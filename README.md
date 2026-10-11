@@ -1,4 +1,4 @@
-# TerraLab for Claude
+# TerraLab for Claude, Cursor and Gemini CLI
 
 Map data, ready for QGIS, from a conversation with Claude.
 
@@ -28,6 +28,15 @@ In Claude Code:
 /plugin marketplace add TerraLabAI/terralab-ai-apps
 /plugin install terralab@terralab-ai-apps
 ```
+
+In Gemini CLI:
+
+```
+gemini extensions install https://github.com/TerraLabAI/terralab-ai-apps
+```
+
+In Cursor: install TerraLab from the Cursor marketplace, or add a remote MCP server with the URL
+`https://mcp.terra-lab.ai/mcp`.
 
 In claude.ai or Claude Desktop you can also add the server alone: Settings, Connectors,
 add a custom connector with the URL `https://mcp.terra-lab.ai/mcp`.
