@@ -39,7 +39,28 @@ gemini extensions install https://github.com/TerraLabAI/mcp
 ```
 
 In Cursor: add a remote MCP server with the URL `https://mcp.terra-lab.ai/mcp`.
-The marketplace listing has not been submitted yet.
+
+In VS Code with GitHub Copilot: run **MCP: Add Server** from the Command Palette,
+choose **HTTP**, enter `https://mcp.terra-lab.ai/mcp` and name the server `terralab`.
+Review the server trust prompt, then enable its tools in chat.
+No TerraLab-specific VS Code extension is needed.
+
+You can also merge this entry into `.vscode/mcp.json`, preserving any existing servers:
+
+```json
+{
+  "servers": {
+    "terralab": {
+      "type": "http",
+      "url": "https://mcp.terra-lab.ai/mcp"
+    }
+  }
+}
+```
+
+See the [VS Code MCP configuration reference](https://code.visualstudio.com/docs/agents/reference/mcp-configuration).
+Try: "Convert longitude 2.3522, latitude 48.8566 from EPSG:4326 to EPSG:2154."
+If tools change, run **MCP: Reset Cached Tools** and reconnect.
 
 In claude.ai or Claude Desktop you can also add the server alone: Settings, Connectors,
 add a custom connector with the URL `https://mcp.terra-lab.ai/mcp`.
