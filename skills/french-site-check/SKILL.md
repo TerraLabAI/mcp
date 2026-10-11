@@ -7,6 +7,13 @@ description: Find the cadastral parcel and the local urban plan (PLU) zone for a
 
 Explicit instructions from the user take priority over this skill.
 
+## Prerequisite
+
+This skill uses [TerraLab MCP](https://terra-lab.ai/mcp). The agent needs a connection
+to `https://mcp.terra-lab.ai/mcp`; installing the skill alone does not connect the server.
+If its tools are unavailable, provide the setup link and stop before claiming results.
+Use the connected tools' current input schemas; tool prefixes vary between clients.
+
 ## Steps
 
 1. Get the site. Use a street address in France, or a point with latitude and longitude.
@@ -42,3 +49,5 @@ Explicit instructions from the user take priority over this skill.
 - The elevation, when asked.
 - The GeoJSON and KML download links returned by the tool.
 - The sources the tool returns: the French cadastre (DGFiP open data), the Geoportail de l'Urbanisme, and Copernicus DEM for elevation.
+
+Done means: the requested checks or extraction completed, with the returned sources, warnings and download links. If the tool cannot complete the request, report the reason and stop without inventing an output.

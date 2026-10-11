@@ -1,0 +1,21 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "GIS and QGIS",
+      "description": "Open map data, GIS file conversion and coordinate systems from TerraLab.",
+      "skills": [
+        "qgis-data-extract",
+        "gis-file-and-crs"
+      ]
+    },
+    {
+      "title": "French parcels",
+      "description": "Cadastral parcels and local urban plan zones for sites in France.",
+      "skills": [
+        "french-site-check"
+      ]
+    }
+  ]
+}

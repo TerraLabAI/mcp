@@ -7,6 +7,13 @@ description: Get open map data such as buildings, roads, addresses, land use, wa
 
 Explicit instructions from the user take priority over this skill.
 
+## Prerequisite
+
+This skill uses [TerraLab MCP](https://terra-lab.ai/mcp). The agent needs a connection
+to `https://mcp.terra-lab.ai/mcp`; installing the skill alone does not connect the server.
+If its tools are unavailable, provide the setup link and stop before claiming results.
+Use the connected tools' current input schemas; tool prefixes vary between clients.
+
 ## Steps
 
 1. Identify the area. Accept a place name or address, a point, a place with a radius, or a bbox `[west, south, east, north]` in decimal degrees.
@@ -52,3 +59,5 @@ Give these short steps after the download links:
 - The download links returned by the tool.
 - The sources and licences the tool returns, as given. Each download also carries its licence.
 - One line saying the data is approximate and not for navigation, surveying or legal boundaries.
+
+Done means: the requested checks or extraction completed, with the returned sources, warnings and download links. If the tool cannot complete the request, report the reason and stop without inventing an output.

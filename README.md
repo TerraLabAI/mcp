@@ -44,6 +44,26 @@ The marketplace listing has not been submitted yet.
 In claude.ai or Claude Desktop you can also add the server alone: Settings, Connectors,
 add a custom connector with the URL `https://mcp.terra-lab.ai/mcp`.
 
+## Agent skills on skills.sh
+
+Install the three GIS skills with the Vercel skills CLI:
+
+```sh
+npx skills add TerraLabAI/mcp
+```
+
+To install only the open-data workflow:
+
+```sh
+npx skills add TerraLabAI/mcp --skill qgis-data-extract
+```
+
+The CLI installs skill instructions. Connect your agent to the TerraLab MCP server
+at `https://mcp.terra-lab.ai/mcp` separately so it can run the GIS tools.
+See the [setup instructions](https://terra-lab.ai/mcp).
+
+Browse [TerraLab skills on skills.sh](https://skills.sh/terralabai/mcp).
+
 ## Links
 
 - Documentation and setup: https://terra-lab.ai/mcp

@@ -7,6 +7,13 @@ description: Check a GIS file or a set of coordinates on a map, convert it to an
 
 Explicit instructions from the user take priority over this skill.
 
+## Prerequisite
+
+This skill uses [TerraLab MCP](https://terra-lab.ai/mcp). The agent needs a connection
+to `https://mcp.terra-lab.ai/mcp`; installing the skill alone does not connect the server.
+If its tools are unavailable, provide the setup link and stop before claiming results.
+Use the connected tools' current input schemas; tool prefixes vary between clients.
+
 ## Steps for a file
 
 1. Call `open_gis_file` with the uploaded `file`, a public `url`, or the pasted `text`. Files up to 50 MB.
@@ -46,3 +53,5 @@ Explicit instructions from the user take priority over this skill.
 - The download links returned by the tool. Shapefile, GeoJSON, KML and CSV open directly in QGIS by drag and drop.
 - The recommended CRS when relevant.
 - One line saying results are approximate and not for navigation, surveying or legal boundaries.
+
+Done means: the requested checks or extraction completed, with the returned sources, warnings and download links. If the tool cannot complete the request, report the reason and stop without inventing an output.
