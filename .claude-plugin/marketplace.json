@@ -1,0 +1,17 @@
+{
+  "name": "terralab-ai-apps",
+  "owner": {
+    "name": "TerraLab",
+    "email": "yvann.barbot@terra-lab.ai"
+  },
+  "metadata": {
+    "description": "TerraLab's plugin for Claude: map data, ready for QGIS."
+  },
+  "plugins": [
+    {
+      "name": "terralab",
+      "source": "./",
+      "description": "Map data, ready for QGIS: open map data extracts, GIS file conversion, coordinates and CRS, elevation, French parcels and zoning."
+    }
+  ]
+}

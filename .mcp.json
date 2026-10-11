@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "terralab": {
+      "type": "http",
+      "url": "https://mcp.terra-lab.ai/mcp"
+    }
+  }
+}
