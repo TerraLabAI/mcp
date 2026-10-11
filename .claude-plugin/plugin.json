@@ -1,5 +1,6 @@
 {
   "name": "terralab",
+  "displayName": "TerraLab",
   "version": "1.0.0",
   "description": "Map data, ready for QGIS: open map data extracts, GIS file conversion, coordinates and CRS, elevation and contours, French parcels and zoning, with sources and licences.",
   "author": {
@@ -8,7 +9,18 @@
     "url": "https://terra-lab.ai"
   },
   "homepage": "https://terra-lab.ai",
+  "privacyPolicyUrl": "https://terra-lab.ai/privacy-policy#ai-assistants",
   "repository": "https://github.com/TerraLabAI/terralab-ai-apps",
   "license": "MIT",
-  "keywords": ["maps", "gis", "qgis", "coordinates", "elevation", "openstreetmap", "shapefile", "cadastre"]
+  "keywords": [
+    "maps",
+    "gis",
+    "qgis",
+    "coordinates",
+    "elevation",
+    "openstreetmap",
+    "shapefile",
+    "cadastre"
+  ],
+  "icon": "./.claude-plugin/icon.png"
 }
