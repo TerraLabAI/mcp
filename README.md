@@ -28,14 +28,14 @@ marketplace ID remains `terralab-ai-apps` so existing installation commands keep
 In Claude Code:
 
 ```
-/plugin marketplace add TerraLabAI/terralab-ai-apps
+/plugin marketplace add TerraLabAI/mcp
 /plugin install terralab@terralab-ai-apps
 ```
 
 In Gemini CLI:
 
 ```
-gemini extensions install https://github.com/TerraLabAI/terralab-ai-apps
+gemini extensions install https://github.com/TerraLabAI/mcp
 ```
 
 In Cursor: add a remote MCP server with the URL `https://mcp.terra-lab.ai/mcp`.
