@@ -1,7 +1,7 @@
 {
   "name": "terralab",
   "version": "1.1.0",
-  "description": "Map data, ready for QGIS: open map data extracts, GIS file conversion, coordinates, elevation and French parcels, with sources and licences.",
+  "description": "Real geospatial data for any place, from a chat: buildings, roads, addresses, land use, waterways, transit and protected areas on an interactive map, with sources and licences, as Shapefile, GeoJSON, KML or CSV. Also GIS file conversion, coordinates and CRS, elevation and contours. No account needed.",
   "mcpServers": {
     "terralab": {
       "httpUrl": "https://mcp.terra-lab.ai/mcp"
