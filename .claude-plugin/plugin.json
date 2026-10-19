@@ -1,7 +1,7 @@
 {
   "name": "terralab",
   "displayName": "TerraLab MCP",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Map data, ready for QGIS: open map data extracts, GIS file conversion, coordinates and CRS, elevation and contours, French parcels and zoning, with sources and licences.",
   "author": {
     "name": "TerraLab",
@@ -20,7 +20,8 @@
     "elevation",
     "openstreetmap",
     "shapefile",
-    "cadastre"
+    "geospatial",
+    "geodata"
   ],
   "icon": "./.claude-plugin/icon.png"
 }

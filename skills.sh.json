@@ -3,18 +3,19 @@
   "notGrouped": "bottom",
   "groupings": [
     {
-      "title": "GIS and QGIS",
-      "description": "Open map data, GIS file conversion and coordinate systems from TerraLab.",
+      "title": "Map data and terrain",
+      "description": "Open map data and elevation for any place in the world, as files ready for QGIS.",
       "skills": [
-        "qgis-data-extract",
-        "gis-file-and-crs"
+        "map-data-for-a-place",
+        "terrain-and-elevation"
       ]
     },
     {
-      "title": "French parcels",
-      "description": "Cadastral parcels and local urban plan zones for sites in France.",
+      "title": "Sites, places and files",
+      "description": "Site studies, addresses and GIS files on a map, coordinate conversion and CRS choice.",
       "skills": [
-        "french-site-check"
+        "site-study",
+        "places-files-and-coordinates"
       ]
     }
   ]

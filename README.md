@@ -3,16 +3,20 @@
 Map data, ready for QGIS, from a conversation with your AI assistant.
 
 This repository contains the Claude and Cursor plugin packages and the Gemini CLI extension
-for TerraLab MCP (`https://mcp.terra-lab.ai/mcp`). The packages include three GIS workflows:
+for TerraLab MCP (`https://mcp.terra-lab.ai/mcp`). The packages include four workflows,
+one per job, that work for any place in the world:
 
-- **qgis-data-extract**: buildings, roads, addresses, administrative areas, land use,
-  waterways, transit stops or protected areas around a place, as GeoJSON, Shapefile, KML
-  or CSV that open directly in QGIS.
-- **gis-file-and-crs**: open, check and convert GeoJSON, KML, KMZ, GPX, zipped Shapefile,
-  CSV or WKT files, convert coordinates (DMS, UTM, MGRS, Lambert 93, EPSG codes) and pick
-  the right projected CRS for a QGIS project.
-- **french-site-check**: the cadastral parcel and the local urban plan (PLU) zone at an
-  address in France.
+- **map-data-for-a-place**: administrative boundaries, buildings, roads, railways, transit
+  stops, addresses, points of interest, land use, rivers and lakes, power lines or protected
+  areas for a place, as GeoJSON, Shapefile, KML or CSV that open directly in QGIS.
+- **terrain-and-elevation**: altitude of places, elevation profiles along a route, contour
+  lines and slope for an area.
+- **site-study**: a first look at a site before a project: terrain, water, protected areas,
+  land use and roads around it, and in France the cadastral parcel and the local urban
+  plan (PLU) zone.
+- **places-files-and-coordinates**: put an address, a list of up to 100 addresses or a
+  GeoJSON, KML, KMZ, GPX, zipped Shapefile, CSV or WKT file on a map, convert it, convert
+  coordinates (DMS, UTM, MGRS, Lambert 93, EPSG codes) and pick the right CRS for QGIS.
 
 Elevation, profiles and contour lines come from Copernicus DEM. Every answer names its
 sources and licences (OpenStreetMap, Overture Maps, Copernicus, IGN and DGFiP open data),
@@ -67,16 +71,16 @@ add a custom connector with the URL `https://mcp.terra-lab.ai/mcp`.
 
 ## Agent skills on skills.sh
 
-Install the three GIS skills with the Vercel skills CLI:
+Install the four GIS skills with the Vercel skills CLI:
 
 ```sh
 npx skills add TerraLabAI/mcp
 ```
 
-To install only the open-data workflow:
+To install only the map data workflow:
 
 ```sh
-npx skills add TerraLabAI/mcp --skill qgis-data-extract
+npx skills add TerraLabAI/mcp --skill map-data-for-a-place
 ```
 
 The CLI installs skill instructions. Connect your agent to the TerraLab MCP server
