@@ -5,7 +5,7 @@
     "email": "yvann.barbot@terra-lab.ai"
   },
   "metadata": {
-    "description": "TerraLab MCP for Claude: map data, ready for QGIS."
+    "description": "TerraLab for Claude: GIS data for any place."
   },
   "plugins": [
     {

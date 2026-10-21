@@ -1,9 +1,9 @@
-# TerraLab MCP
+# TerraLab
 
-Map data, ready for QGIS, from a conversation with your AI assistant.
+GIS data for any place, from a conversation with your AI assistant. Made by [TerraLab](https://terra-lab.ai), which builds AI tools for QGIS.
 
 This repository contains the Claude and Cursor plugin packages and the Gemini CLI extension
-for TerraLab MCP (`https://mcp.terra-lab.ai/mcp`). The packages include four workflows,
+for TerraLab (`https://mcp.terra-lab.ai/mcp`). The packages include four workflows,
 one per job, that work for any place in the world:
 
 - **map-data-for-a-place**: administrative boundaries, buildings, roads, railways, transit
@@ -26,7 +26,7 @@ Results are approximate and not for navigation, surveying or legal boundaries.
 
 ## Install
 
-The product name is **TerraLab MCP**. The package ID remains `terralab`, and the Claude
+The product name is **TerraLab**. The package ID remains `terralab`, and the Claude
 marketplace ID remains `terralab-ai-apps` so existing installation commands keep working.
 
 In Claude Code:
@@ -83,7 +83,7 @@ To install only the map data workflow:
 npx skills add TerraLabAI/mcp --skill map-data-for-a-place
 ```
 
-The CLI installs skill instructions. Connect your agent to the TerraLab MCP server
+The CLI installs skill instructions. Connect your agent to the TerraLab server
 at `https://mcp.terra-lab.ai/mcp` separately so it can run the GIS tools.
 See the [setup instructions](https://terra-lab.ai/mcp).
 

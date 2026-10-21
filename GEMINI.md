@@ -1,6 +1,6 @@
-# TerraLab MCP
+# TerraLab
 
-The `terralab` MCP server gives map data ready for QGIS: open map data extracts (buildings,
+The `terralab` MCP server gives GIS data for any place: open map data extracts (buildings,
 roads, addresses, administrative areas, land use, waterways), GIS file reading and conversion,
 coordinate conversion with a recommended local CRS, elevation, profiles and contour lines, and
 French cadastral parcels with their PLU zone.

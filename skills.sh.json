@@ -4,7 +4,7 @@
   "groupings": [
     {
       "title": "Map data and terrain",
-      "description": "Open map data and elevation for any place in the world, as files ready for QGIS.",
+      "description": "Open map data and elevation for any place in the world, as files for QGIS or any GIS.",
       "skills": [
         "map-data-for-a-place",
         "terrain-and-elevation"

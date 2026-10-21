@@ -9,7 +9,7 @@ Explicit instructions from the user take priority over this skill.
 
 ## Prerequisite
 
-This skill uses [TerraLab MCP](https://terra-lab.ai/mcp). The agent needs a connection
+This skill uses [TerraLab](https://terra-lab.ai/mcp). The agent needs a connection
 to `https://mcp.terra-lab.ai/mcp`; installing the skill alone does not connect the server.
 If its tools are unavailable, provide the setup link and stop before claiming results.
 Use the connected tools' current input schemas; tool prefixes vary between clients.
