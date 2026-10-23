@@ -14,6 +14,7 @@ counts, sources and licences. Open the folder in QGIS. No key, no account.
 import argparse
 import http.client
 import asyncio
+import gzip
 import re
 import urllib.request
 from pathlib import Path
@@ -34,11 +35,16 @@ def save(downloads: list[dict], folder: Path, wanted: set[str]) -> list[str]:
         if d.get("format") not in wanted:
             continue
         target = folder / d["name"]
-        # Each link builds its file when opened; retry once if a large build is cut off.
+        # Ask for gzip: GeoJSON shrinks about 10x, which matters on slow links.
+        # Retry once if a download is cut off.
+        request = urllib.request.Request(d["url"], headers={"Accept-Encoding": "gzip"})
         for attempt in (1, 2):
             try:
-                with urllib.request.urlopen(d["url"], timeout=180) as r:
-                    target.write_bytes(r.read())
+                with urllib.request.urlopen(request, timeout=180) as r:
+                    body = r.read()
+                    if r.headers.get("Content-Encoding") == "gzip":
+                        body = gzip.decompress(body)
+                target.write_bytes(body)
                 break
             except (OSError, http.client.IncompleteRead):
                 if attempt == 2:

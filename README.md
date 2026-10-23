@@ -181,8 +181,8 @@ Other frameworks take the same URL as a Streamable HTTP server: CrewAI
 (`BasicMCPClient(url)`), Mastra (`MCPClient` with `url: new URL(...)`), smolagents
 (`MCPClient({"url": ..., "transport": "streamable-http"})`). We have not run these five yet.
 
-Large areas take time: an extract of a few thousand buildings can take 30 to 90 seconds,
-so give your MCP client a timeout of at least 120 seconds.
+Large areas take time: give your MCP client a timeout of at least 120 seconds. Download links
+serve gzip when you send `Accept-Encoding: gzip` (httpx and requests do it for you).
 
 ## Examples
 
