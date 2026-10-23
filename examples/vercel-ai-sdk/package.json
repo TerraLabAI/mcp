@@ -1,0 +1,10 @@
+{
+  "name": "terralab-vercel-ai-sdk-example",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/mcp": "^2.0.83",
+    "@ai-sdk/openai": "^4.0.101",
+    "ai": "^7.0.150"
+  }
+}
