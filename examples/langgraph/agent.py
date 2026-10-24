@@ -16,8 +16,16 @@ import sys
 from langchain.agents import create_agent
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
+# Your TerraLab API key, sent when TERRALAB_API_KEY is set.
+KEY = os.environ.get("TERRALAB_API_KEY")
 client = MultiServerMCPClient(
-    {"terralab": {"url": "https://mcp.terra-lab.ai/mcp", "transport": "streamable_http"}}
+    {
+        "terralab": {
+            "url": "https://mcp.terra-lab.ai/mcp",
+            "transport": "streamable_http",
+            "headers": {"Authorization": f"Bearer {KEY}"} if KEY else {},
+        }
+    }
 )
 
 
