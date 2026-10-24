@@ -1,9 +1,15 @@
 # TerraLab MCP
 
-**GIS data for any place, inside your agent.** Ask for a place, get real GIS files back:
-buildings, roads, land use, water, elevation and contours, routes, travel-time areas and
-satellite images, as GeoJSON, Shapefile, KML, GPX, CSV, GeoPackage or GeoTIFF, each with its
-sources and licence. Anywhere in the world, with French cadastre, zoning and building heights.
+**Geodata for any place, inside your agent.** One hosted MCP server, used with your TerraLab account:
+
+```
+https://mcp.terra-lab.ai/mcp
+```
+
+Data about a place is spread across national portals, file formats and licences, where an agent cannot
+reach it. TerraLab MCP gives any agent geodata for any place on Earth: map data, terrain, routes, satellite
+images and French parcels, each with its source and licence, as files QGIS opens as they are. It is built
+by TerraLab, whose QGIS plugins show every day what GIS users ask for.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme-header-dark.png">
