@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "terralab": {
+      "type": "http",
+      "url": "https://mcp.terra-lab.ai/mcp",
+      "headers": { "Authorization": "Bearer ${TERRALAB_API_KEY}" }
+    }
+  }
+}
