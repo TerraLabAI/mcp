@@ -1,9 +1,9 @@
 # TerraLab
 
-The `terralab` MCP server gives GIS data for any place: open map data extracts (buildings,
-roads, addresses, administrative areas, land use, waterways), GIS file reading and conversion,
-coordinate conversion with a recommended local CRS, elevation, profiles and contour lines, and
-French cadastral parcels with their PLU zone.
+TerraLab MCP (the terralab server) gives geodata for any place: places and addresses, coordinate conversion,
+open map data extracts, elevation and contours, satellite images, routes and travel-time areas, distances,
+areas and buffers, GIS file reading, conversion and processing, French cadastral parcels and French building
+heights.
 
 - Pass a place name straight to the tool that needs it; most tools locate the place themselves.
 - Give the user the download links and the sources and licences each result returns.
