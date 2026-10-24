@@ -38,6 +38,10 @@ Use the connected tools' current input schemas; tool prefixes vary between clien
 | Neighbouring buildings | `extract_open_data`, `theme` `buildings`, radius 100 to 300 m |
 | Power lines, substations (solar, wind) | `extract_open_data`, `theme` `power`, radius 1 to 3 km |
 | Transit stops, schools, shops (housing, retail) | `extract_open_data`, `theme` `transit_stops` or `pois` with `kind` |
+| What lies within a walk or a drive (housing, retail) | `get_travel_area`, `starts` the site, `minutes` such as `[5, 10, 15]`, `mode` |
+| Straight-line distance to a place (station, school, coast) | `measure`, `method` `"distance"` with the site and the place |
+| A recent picture of the site | `get_satellite_image`, `area` with `radius_m` 200 to 1,000 (IGN aerial photo in France, Sentinel-2 elsewhere) |
+| Height of neighbouring buildings (France) | `french_building_heights`, `area` with `radius_m` 100 to 300 |
 
 Use the same site and radius in every call so the results line up. Report distances only
 when the tool returns them; otherwise say "within the radius".

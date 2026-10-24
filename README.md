@@ -7,8 +7,9 @@ https://mcp.terra-lab.ai/mcp
 ```
 
 Ask for a place, get real GIS files back: buildings, roads, addresses, land use, water,
-transit, protected areas, elevation, contour lines, as GeoJSON, Shapefile, KML, CSV, GeoPackage
-or GeoTIFF, each with its sources and licence. Works anywhere in the world.
+transit, protected areas, elevation, contour lines, routes, travel-time areas and satellite
+images, as GeoJSON, Shapefile, KML, GPX, CSV, GeoPackage or GeoTIFF, each with its sources and
+licence. Works anywhere in the world.
 Made by [TerraLab](https://terra-lab.ai), which builds AI tools for QGIS.
 
 ## Start in 30 seconds
@@ -30,6 +31,12 @@ Other clients and frameworks are below; it is the same URL everywhere.
 | `open_gis_file` | Reads a GeoJSON, KML, KMZ, GPX, zipped Shapefile, CSV or WKT file (upload, URL or text), shows it and converts it |
 | `convert_coordinates` | Decimal degrees, DMS, UTM, MGRS, Lambert 93 or any EPSG code, with a recommended local CRS |
 | `french_parcel` | French cadastral parcel and local urban plan (PLU) zone at an address or point |
+| `french_building_heights` | Height, floors, main use and year built of each building around a French address (IGN BD TOPO), up to 0.6 km² |
+| `measure` | Straight-line distance between places, area and perimeter of a shape, or a circle or buffer of a given radius, geodesic |
+| `get_route` | Driving, walking or cycling route through 2 to 25 places, with distance and time per leg, avoiding tolls, highways or ferries on request (GeoJSON, KML, GPX, Shapefile, GeoPackage) |
+| `get_travel_area` | Areas reachable within a time or a distance along the roads (isochrones) from up to 10 starts, up to 4 values, 120 minutes or 200 km |
+| `process_geometry` | Buffer, union, intersection, difference, clip, simplify, centroid or area and length on a file, a link, inline GeoJSON or a TerraLab download link |
+| `get_satellite_image` | Sentinel-2 L2A true colour, false colour or NDVI anywhere (10 m, up to 20 × 20 km), or an IGN aerial photo in France (0.5 to 1 m, up to 2 × 2 km), as GeoTIFF |
 
 Every result has a short text answer for the model, structured content for code
 (`places`, `downloads`, `sources`), and download links that build the file when opened.

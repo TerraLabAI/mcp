@@ -29,7 +29,8 @@ plugin: the tool returns the data itself.
    10 in a list, for example `"school"` or `["forest", "meadow", "grass"]`.
 5. Set `formats` to what the user will open: `geojson` by default, `shapefile` for tools
    that expect it, `kml` for Google Earth, `csv` for a spreadsheet. List them all in this
-   one call; never pass a download link to another tool.
+   one call; never pass a download link to another tool, except `process_geometry`, which
+   takes a TerraLab download link to clip, buffer or measure that layer.
 6. Check the place the tool reports before answering (see Wrong place).
 
 | The user asks for | `theme` | Useful `kind` |
