@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # A headless Claude Code agent that writes a site brief for any place with TerraLab.
 #   ./site_brief.sh "Porto-Vecchio, Corsica"
-# Needs Claude Code (https://code.claude.com). No TerraLab key or account.
+# Needs Claude Code (https://code.claude.com) and a TerraLab API key in TERRALAB_API_KEY.
 set -euo pipefail
 place="${1:?usage: site_brief.sh \"<place>\"}"
 here="$(cd "$(dirname "$0")" && pwd)"
@@ -14,8 +14,12 @@ Then write a short site brief in Markdown: location, terrain, built density, roa
 a table of download links (GeoJSON and GeoTIFF), and the sources and licences.
 Do not invent numbers: use only what the tools return."
 
+# mcp-key.json sends the key from the environment; Claude Code expands ${TERRALAB_API_KEY}.
+config="$here/mcp.json"
+[ -n "${TERRALAB_API_KEY:-}" ] && config="$here/mcp-key.json"
+
 # The prompt goes first: --allowedTools takes several values and would swallow it.
 claude -p "$prompt" \
-  --mcp-config "$here/mcp.json" \
+  --mcp-config "$config" \
   --strict-mcp-config \
   --allowedTools "mcp__terralab"
