@@ -6,8 +6,14 @@ import { createMCPClient } from "@ai-sdk/mcp";
 import { generateText, stepCountIs } from "ai";
 import { openai } from "@ai-sdk/openai";
 
+// Your TerraLab API key, sent when TERRALAB_API_KEY is set.
+const key = process.env.TERRALAB_API_KEY;
 const terralab = await createMCPClient({
-  transport: { type: "http", url: "https://mcp.terra-lab.ai/mcp" },
+  transport: {
+    type: "http",
+    url: "https://mcp.terra-lab.ai/mcp",
+    headers: key ? { Authorization: `Bearer ${key}` } : undefined,
+  },
 });
 const tools = await terralab.tools();
 console.log("TerraLab tools:", Object.keys(tools).join(", "));
