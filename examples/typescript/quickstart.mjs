@@ -1,11 +1,16 @@
 // List the TerraLab tools and run one with the official MCP TypeScript SDK.
 //   npm install
-//   node quickstart.mjs
+//   TERRALAB_API_KEY=tlk_... node quickstart.mjs
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 
 const client = new Client({ name: "terralab-quickstart", version: "1.0.0" });
-await client.connect(new StreamableHTTPClientTransport(new URL("https://mcp.terra-lab.ai/mcp")));
+// Your TerraLab API key, sent when TERRALAB_API_KEY is set.
+const key = process.env.TERRALAB_API_KEY;
+const requestInit = key ? { headers: { Authorization: `Bearer ${key}` } } : undefined;
+await client.connect(
+  new StreamableHTTPClientTransport(new URL("https://mcp.terra-lab.ai/mcp"), { requestInit }),
+);
 
 const { tools } = await client.listTools();
 console.log("Tools:", tools.map((t) => t.name).join(", "));
