@@ -1,6 +1,8 @@
 # TerraLab examples
 
-Every example talks to the production server `https://mcp.terra-lab.ai/mcp`.
+Every example talks to the production server `https://mcp.terra-lab.ai/mcp`. Set your
+TerraLab API key first (`export TERRALAB_API_KEY=tlk_...`, keys at [terra-lab.ai/dashboard/agent-access](https://terra-lab.ai/dashboard/agent-access)): every example sends it as
+`Authorization: Bearer` when the variable is set, and nothing otherwise.
 Python examples run with [uv](https://docs.astral.sh/uv/)
 (`uv run <file>` installs their dependencies); Node examples need `npm install` first.
 
@@ -8,8 +10,8 @@ Python examples run with [uv](https://docs.astral.sh/uv/)
 | --- | --- | --- | --- |
 | Site pack agent: a folder of GIS files for any place | `uv run python/site_pack.py "Kreuzberg, Berlin" --radius 300` | uv | 2026-10-23: Porto-Vecchio 500 m, 7 files in 18 s |
 | Site brief agent, headless Claude Code | `./claude-code/site_brief.sh "Annecy old town, France"` | Claude Code | 2026-10-23: brief with 6 download links in 2 min |
-| Python MCP SDK quickstart | `uv run python/quickstart.py` | uv | 2026-10-23 |
-| TypeScript MCP SDK quickstart | `cd typescript && npm install && node quickstart.mjs` | Node 20+ | 2026-10-23 |
+| Python MCP SDK quickstart | `uv run python/quickstart.py` | uv | 2026-10-24 |
+| TypeScript MCP SDK quickstart | `cd typescript && npm install && node quickstart.mjs` | Node 20+ | 2026-10-24 |
 | OpenAI Agents SDK | `uv run openai-agents/agent.py "<prompt>"` | `OPENAI_API_KEY` | 2026-10-23: full agent run (gpt-5.4-mini) |
 | LangChain / LangGraph | `uv run langgraph/agent.py "<prompt>"` | `OPENAI_API_KEY` (or any LangChain model) | 2026-10-23: full agent run (gpt-5.4-mini) |
 | Vercel AI SDK | `cd vercel-ai-sdk && npm install && node agent.mjs "<prompt>"` | `OPENAI_API_KEY` | 2026-10-23: tools and a tool call; model call not run |
