@@ -2,7 +2,7 @@
   "name": "terralab",
   "displayName": "TerraLab",
   "version": "1.1.0",
-  "description": "Real geospatial data for any place, from a chat: buildings, roads, addresses, land use, waterways, transit and protected areas on an interactive map, with sources and licences, as Shapefile, GeoJSON, KML or CSV. Also GIS file conversion, coordinates and CRS, elevation and contours.",
+  "description": "Geodata for any place, inside your agent: buildings, roads, addresses, boundaries, terrain, routes, travel-time areas and satellite images anywhere in the world, plus parcels and building heights in France. Each answer shows a map, names its source and licence, and gives files that open in QGIS: GeoPackage, Shapefile, GeoJSON, KML, CSV or GeoTIFF.",
   "author": {
     "name": "TerraLab",
     "email": "yvann.barbot@terra-lab.ai",
@@ -13,15 +13,16 @@
   "repository": "https://github.com/TerraLabAI/mcp",
   "license": "MIT",
   "keywords": [
-    "maps",
-    "gis",
-    "qgis",
-    "coordinates",
-    "elevation",
-    "openstreetmap",
-    "shapefile",
+    "geodata",
     "geospatial",
-    "geodata"
+    "gis",
+    "maps",
+    "openstreetmap",
+    "overture maps",
+    "elevation",
+    "satellite imagery",
+    "geocoding",
+    "qgis"
   ],
   "icon": "./.claude-plugin/icon.png"
 }
