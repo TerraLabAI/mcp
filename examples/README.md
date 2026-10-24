@@ -1,7 +1,7 @@
 # TerraLab examples
 
 Every example talks to the production server `https://mcp.terra-lab.ai/mcp`.
-No TerraLab key or account. Python examples run with [uv](https://docs.astral.sh/uv/)
+Python examples run with [uv](https://docs.astral.sh/uv/)
 (`uv run <file>` installs their dependencies); Node examples need `npm install` first.
 
 | Example | Run | Needs | Last run |
