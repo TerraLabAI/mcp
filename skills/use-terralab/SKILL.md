@@ -17,13 +17,16 @@ claiming any result. Installing this skill does not connect the server.
 
 Authentication:
 
-- Today the server needs no sign-in and no key.
-- When the server answers `401` with a `WWW-Authenticate: Bearer resource_metadata=...`
-  challenge, the MCP client runs the OAuth sign-in to a TerraLab account in the browser
-  (`/mcp` in Claude Code). The user completes it; the agent never types a password.
+- TerraLab needs a TerraLab account. When the server answers `401` with a
+  `WWW-Authenticate: Bearer resource_metadata=...` challenge, the MCP client runs the OAuth
+  sign-in in the browser (`/mcp` in Claude Code, `codex mcp login terralab` in Codex). The
+  user completes it; the agent never types a password.
 - A script or client without OAuth sends `Authorization: Bearer <TerraLab API key>`. Keep the
   key in an environment variable or the client's secret store, never in a skill file, project
-  instructions, a commit or displayed output.
+  instructions, a commit or displayed output. Keys are created at
+  https://terra-lab.ai/dashboard/agent-access.
+- A `daily_limit` error means the account used its data calls for the day; it resets at
+  00:00 UTC. Tell the user instead of retrying.
 
 ## Route the request
 
