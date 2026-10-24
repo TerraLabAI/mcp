@@ -40,8 +40,6 @@ Pick your agent. It is the same URL everywhere.
 | **Windsurf** | Cascade, `...`, Open MCP config file, then add `{"mcpServers": {"terralab": {"serverUrl": "https://mcp.terra-lab.ai/mcp"}}}` |
 | **Gemini CLI** | `gemini extensions install https://github.com/TerraLabAI/mcp` (server plus skills), or `gemini mcp add --transport http terralab https://mcp.terra-lab.ai/mcp` |
 | **Codex** | `codex mcp add terralab --url https://mcp.terra-lab.ai/mcp` |
-| **OpenClaw** | `openclaw mcp set terralab '{"url":"https://mcp.terra-lab.ai/mcp","transport":"streamable-http"}'` |
-| **Hermes** | `hermes mcp add terralab --url https://mcp.terra-lab.ai/mcp`, or under `mcp_servers:` in `~/.hermes/config.yaml`: `terralab: {url: "https://mcp.terra-lab.ai/mcp"}` |
 
 The first time, your agent opens the TerraLab sign-in in your browser (in Claude Code run
 `/mcp`, in Codex `codex mcp login terralab`). Then ask:
@@ -54,9 +52,7 @@ Each line follows the client's own MCP documentation:
 [VS Code](https://code.visualstudio.com/docs/agents/reference/mcp-configuration),
 [Windsurf](https://docs.windsurf.com/windsurf/cascade/mcp),
 [Gemini CLI](https://geminicli.com/docs/tools/mcp-server),
-[Codex](https://developers.openai.com/codex/mcp),
-[OpenClaw](https://docs.openclaw.ai/tools/mcp),
-[Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp).
+[Codex](https://developers.openai.com/codex/mcp).
 In VS Code, run **MCP: Reset Cached Tools** after the server adds a tool.
 
 ## What you can ask
