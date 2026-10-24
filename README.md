@@ -1,68 +1,205 @@
-# TerraLab
+# TerraLab MCP
 
-GIS data for any place, for your AI agent. One hosted MCP server, no API key, no account:
+**GIS data for any place, inside your agent.** Ask for a place, get real GIS files back:
+buildings, roads, land use, water, elevation and contours, routes, travel-time areas and
+satellite images, as GeoJSON, Shapefile, KML, GPX, CSV, GeoPackage or GeoTIFF, each with its
+sources and licence. Anywhere in the world, with French cadastre, zoning and building heights.
 
-```
-https://mcp.terra-lab.ai/mcp
-```
+![Four real TerraLab answers of 2026-10-24: 877 buildings in Annecy, contour lines around Chamonix, 5, 10 and 15 minute walking areas from Shibuya Station, and an NDVI image of Saint-Émilion](assets/readme-header.png)
 
-Ask for a place, get real GIS files back: buildings, roads, addresses, land use, water,
-transit, protected areas, elevation, contour lines, routes, travel-time areas and satellite
-images, as GeoJSON, Shapefile, KML, GPX, CSV, GeoPackage or GeoTIFF, each with its sources and
-licence. Works anywhere in the world.
-Made by [TerraLab](https://terra-lab.ai), which builds AI tools for QGIS.
+| | |
+| --- | --- |
+| Server URL | `https://mcp.terra-lab.ai/mcp` |
+| Transport | Streamable HTTP, hosted by TerraLab |
+| Authentication | None today. A TerraLab account is coming; see [Account](#account) |
+| Tools | 12, all read-only |
+| Coverage | Worldwide; France in more depth (cadastre, PLU, IGN aerial photos and building heights) |
+
+Made by [TerraLab](https://terra-lab.ai), which builds AI plugins for QGIS.
 
 ## Start in 30 seconds
 
-```bash
-claude mcp add --transport http terralab https://mcp.terra-lab.ai/mcp
+Pick your agent. It is the same URL everywhere.
+
+| Agent | Setup |
+| --- | --- |
+| **Claude Code** | `claude mcp add --transport http terralab https://mcp.terra-lab.ai/mcp` (add `--scope user` for every project) |
+| **Claude.ai, Claude Desktop** | [Add a custom connector](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=TerraLab&connectorUrl=https%3A%2F%2Fmcp.terra-lab.ai%2Fmcp) with the URL above (Settings, Connectors, Add) |
+| **ChatGPT** | [Open TerraLab in the ChatGPT app directory](https://chatgpt.com/apps/terralab/asdk_app_6abeb2f16190819199cc1be0ed69e8d4) and add it, then type `@TerraLab` in a chat |
+| **Cursor** | [Add to Cursor](https://cursor.com/en/install-mcp?name=terralab&config=eyJ1cmwiOiJodHRwczovL21jcC50ZXJyYS1sYWIuYWkvbWNwIn0=), or in `~/.cursor/mcp.json`: `{"mcpServers": {"terralab": {"url": "https://mcp.terra-lab.ai/mcp"}}}` |
+| **VS Code (Copilot)** | [Install in VS Code](https://vscode.dev/redirect/mcp/install?name=terralab&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.terra-lab.ai%2Fmcp%22%7D), or `code --add-mcp '{"name":"terralab","type":"http","url":"https://mcp.terra-lab.ai/mcp"}'` |
+| **Windsurf** | Cascade, `...`, Open MCP config file, then add `{"mcpServers": {"terralab": {"serverUrl": "https://mcp.terra-lab.ai/mcp"}}}` |
+| **Gemini CLI** | `gemini extensions install https://github.com/TerraLabAI/mcp` (server plus skills), or `gemini mcp add --transport http terralab https://mcp.terra-lab.ai/mcp` |
+| **Codex** | `codex mcp add terralab --url https://mcp.terra-lab.ai/mcp` |
+| **OpenClaw** | `openclaw mcp set terralab '{"url":"https://mcp.terra-lab.ai/mcp","transport":"streamable-http"}'` |
+| **Hermes** | `hermes mcp add terralab --url https://mcp.terra-lab.ai/mcp`, or under `mcp_servers:` in `~/.hermes/config.yaml`: `terralab: {url: "https://mcp.terra-lab.ai/mcp"}` |
+
+Then ask your agent:
+
+> Get the buildings within 500 m of Annecy old town as a Shapefile for QGIS.
+
+Each line follows the client's own MCP documentation:
+[Claude Code](https://code.claude.com/docs/en/mcp),
+[Cursor](https://cursor.com/docs/mcp),
+[VS Code](https://code.visualstudio.com/docs/agents/reference/mcp-configuration),
+[Windsurf](https://docs.windsurf.com/windsurf/cascade/mcp),
+[Gemini CLI](https://geminicli.com/docs/tools/mcp-server),
+[Codex](https://developers.openai.com/codex/mcp),
+[OpenClaw](https://docs.openclaw.ai/tools/mcp),
+[Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp).
+In VS Code, run **MCP: Reset Cached Tools** after the server adds a tool.
+
+## What you can ask
+
+Twelve tools, named by what they do. Your agent picks the tool; most tools find the place
+themselves, so a name or an address is enough.
+
+| Do | Tool | Ask your agent |
+| --- | --- | --- |
+| **Extract** map layers | `extract_open_data` | "All pharmacies in Lyon as a CSV" |
+| **Find** places and addresses | `find_places` | "Put these 40 customer addresses on a map and give me the CSV with coordinates" |
+| **Read** elevation, profiles, contours | `get_elevation` | "Contour lines every 10 m and a slope map around Annecy old town" |
+| **Route** between places | `get_route` | "Cycling route from Nantes to Saint-Nazaire as a GPX, avoiding highways" |
+| **Reach** within a time | `get_travel_area` | "Everything within 10 and 20 minutes' drive of Bordeaux station" |
+| **Measure** distances and areas | `measure` | "Area of this polygon in hectares, and a 500 m buffer around it" |
+| **Process** a layer | `process_geometry` | "Clip these buildings to the commune boundary and dissolve them by type" |
+| **See** from space | `get_satellite_image` | "Latest cloud-free NDVI of my vineyard near Saint-Émilion" |
+| **Open** and convert a file | `open_gis_file` | "Turn this GPX track into a Shapefile" |
+| **Convert** coordinates | `convert_coordinates` | "Convert X 942507, Y 6538034 in Lambert 93 to GPS, and which CRS should I use in QGIS?" |
+| **Look up** a French parcel and its zone | `french_parcel` | "Which cadastral parcel and PLU zone is the town hall of Annecy on?" |
+| **Measure** French building heights | `french_building_heights` | "How tall are the buildings within 150 m of Place Bellecour, Lyon?" |
+
+`extract_open_data` layers: buildings, roads, addresses, administrative boundaries and
+divisions, places, land use, points of interest (one `kind` such as pharmacies or schools),
+waterways, water areas, power lines, railways, routes, transit stops and protected areas.
+
+Every result has a short text answer for the model, structured content for code (`downloads`,
+`sources` and the figures of each tool), an interactive map in clients that show one, and
+download links that build the file when opened.
+
+## Recipes
+
+Five real requests, each with the exact call and the answer production returned on
+2026-10-24. Paste the question into your agent, or send the call from code.
+
+### 1. Buildings of a town centre, for QGIS
+
+> Get the buildings within 500 m of Annecy old town as GeoJSON and Shapefile.
+
+```json
+{"name": "extract_open_data", "arguments": {"theme": "buildings", "area": {"place": "Annecy old town, France", "radius_m": 500}, "formats": ["geojson", "shapefile"]}}
 ```
 
-Then ask Claude Code: *"Get the buildings and roads within 500 m of Porto-Vecchio, Corsica, as GeoJSON."*
-Other clients and frameworks are below; it is the same URL everywhere.
+Answer in 4.0 s: 877 buildings in about 1.00 km², centre 45.89923, 6.12888; most common type
+`class=apartments` (288). Downloads: GeoPackage, GeoJSON, Shapefile (zip). Source: Overture Maps
+release 2026-09-23, ODbL 1.0, © OpenStreetMap contributors, Overture Maps Foundation and the
+other contributors the answer lists.
 
-## Tools
+Check: buildings crossing the edge come back whole. One extract holds at most 20,000
+features, so for a whole city ask for a smaller radius, or one `kind` of feature.
 
-| Tool | What it returns |
+### 2. Parcel and zoning of a French address
+
+> Which cadastral parcel and PLU zone is the town hall of Annecy on?
+
+```json
+{"name": "french_parcel", "arguments": {"address": "Place de l'Hôtel de Ville, 74000 Annecy"}}
+```
+
+Answer in 1.9 s: parcel 74010000BY0186, commune Annecy (INSEE 74010), section BY, number 0186,
+cadastral area 1,038 m². PLU zone Uah (type U, historic centre), document
+`200066793_PLUI_20260326`. Lambert 93: X 942507.90, Y 6538034.33. GeoJSON and KML of the
+parcel. Sources: DGFiP cadastre (edition 2026-06-01), Géoportail de l'Urbanisme (2026-09-09),
+IGN geocoder, all Licence Ouverte 2.0.
+
+Check: the address matched "Esplanade de l'Hôtel de Ville"; confirm the match is the place
+you meant. The cadastral plan does not fix property boundaries, and the tool never returns
+owners or sale prices.
+
+### 3. Terrain of a mountain site
+
+> Contour lines every 50 m, a DEM, hillshade and slope within 2 km of Chamonix.
+
+```json
+{"name": "get_elevation", "arguments": {"mode": "area", "area": {"place": "Chamonix-Mont-Blanc, France", "radius_m": 2000}, "interval_m": 50}}
+```
+
+Answer in 3.2 s: 26 contour levels over about 16.0 km², from 1,011 m to 2,357 m; mean slope
+46.4 %, 80 % of the area steeper than 10 %. Downloads: DEM, hillshade and slope GeoTIFFs,
+contours as GeoJSON, KML and Shapefile. Source: Copernicus DEM GLO-30.
+
+Check: Copernicus DEM is a 30 m surface model, so it includes buildings and trees. Use it for
+terrain, not for the height of a single building.
+
+### 4. Walking catchment of a station, anywhere
+
+> What can I reach on foot in 5, 10 and 15 minutes from Shibuya Station?
+
+```json
+{"name": "get_travel_area", "arguments": {"starts": ["Shibuya Station, Tokyo"], "minutes": [5, 10, 15], "mode": "walking"}}
+```
+
+Answer in 2.5 s: 3 polygons with fields `start`, `minutes` and `mode`, from Shibuya Station
+(35.65972, 139.69959). Their areas, measured from the GeoJSON: about 0.44, 1.71 and 3.78 km².
+Downloads: GeoJSON, KML, Shapefile, GeoPackage. Sources: Valhalla routing on the OpenStreetMap
+road network and the TerraLab geocoder, ODbL 1.0.
+
+Check: the answer names the start it used. A station name can match a freight yard or a shop
+inside the station; when the name differs from what you meant, pass `{latitude, longitude}`.
+
+### 5. Vegetation of a vineyard from Sentinel-2
+
+> Latest cloud-free NDVI within 2 km of Saint-Émilion.
+
+```json
+{"name": "get_satellite_image", "arguments": {"area": {"place": "Saint-Émilion, France", "radius_m": 2000}, "source": "sentinel2", "product": "ndvi"}}
+```
+
+Answer in 2.7 s: scene `S2C_30TYQ_20260919_0_L2A` of 2026-09-19, 0 % cloud, the least cloudy
+of 7 scenes from the last 60 days. NDVI GeoTIFF, 10 m, 415 × 415 px (about 0.7 MB), in
+EPSG:32630 (UTM 30N), licence and date in the file. Source: Copernicus Sentinel-2 L2A.
+
+Check: cloud, shadow and snow pixels are NaN, not zero. Inside metropolitan France, true colour
+without a date defaults to the IGN aerial photo (0.5 to 1 m) instead of Sentinel-2.
+
+More chained workflows are in [`examples/`](examples/), such as a site pack that writes a
+folder of GIS files for any place.
+
+## Skills
+
+Skills tell your agent which tool fits a request and how to report the result. They need the
+server above; installing a skill alone does not connect it.
+
+| Skill | When your agent uses it |
 | --- | --- |
-| `find_places` | Coordinates for an address or place, an address for coordinates, or up to 100 addresses on a map |
-| `extract_open_data` | OpenStreetMap and Overture Maps layers for an area (buildings, roads, addresses, admin boundaries, land use, POIs, waterways, water, power, railways, transit stops, protected areas) as downloadable files |
-| `get_elevation` | Elevation of points, a profile along a route, or for an area: DEM, hillshade and slope GeoTIFFs plus contour lines (Copernicus DEM 30 m) |
-| `open_gis_file` | Reads a GeoJSON, KML, KMZ, GPX, zipped Shapefile, CSV or WKT file (upload, URL or text), shows it and converts it |
-| `convert_coordinates` | Decimal degrees, DMS, UTM, MGRS, Lambert 93 or any EPSG code, with a recommended local CRS |
-| `french_parcel` | French cadastral parcel and local urban plan (PLU) zone at an address or point |
-| `french_building_heights` | Height, floors, main use and year built of each building around a French address (IGN BD TOPO), up to 0.6 km² |
-| `measure` | Straight-line distance between places, area and perimeter of a shape, or a circle or buffer of a given radius, geodesic |
-| `get_route` | Driving, walking or cycling route through 2 to 25 places, with distance and time per leg, avoiding tolls, highways or ferries on request (GeoJSON, KML, GPX, Shapefile, GeoPackage) |
-| `get_travel_area` | Areas reachable within a time or a distance along the roads (isochrones) from up to 10 starts, up to 4 values, 120 minutes or 200 km |
-| `process_geometry` | Buffer, union, intersection, difference, clip, simplify, centroid or area and length on a file, a link, inline GeoJSON or a TerraLab download link |
-| `get_satellite_image` | Sentinel-2 L2A true colour, false colour or NDVI anywhere (10 m, up to 20 × 20 km), or an IGN aerial photo in France (0.5 to 1 m, up to 2 × 2 km), as GeoTIFF |
+| [`use-terralab`](skills/use-terralab/SKILL.md) | Any request about a real place or a GIS file: routes it to the right tool, resolves the place honestly, reports figures, files, sources and licences |
+| [`map-data-for-a-place`](skills/map-data-for-a-place/SKILL.md) | Boundaries, buildings, roads, transit, addresses, POIs, land use, water, power lines or protected areas as files for QGIS |
+| [`terrain-and-elevation`](skills/terrain-and-elevation/SKILL.md) | Altitude, profiles along a route, contour lines and slope |
+| [`site-study`](skills/site-study/SKILL.md) | A first look at a site before a project; in France, parcel and PLU zone |
+| [`places-files-and-coordinates`](skills/places-files-and-coordinates/SKILL.md) | Addresses and GIS files on a map, file conversion, coordinates and CRS choice |
 
-Every result has a short text answer for the model, structured content for code
-(`places`, `downloads`, `sources`), and download links that build the file when opened.
-All tools are read-only. Tool changes are additive: tools, parameters and output fields are
-never removed or renamed without 30 days' notice on [terra-lab.ai/mcp](https://terra-lab.ai/mcp).
+Install them:
 
-## Connect a client
+```text
+/plugin marketplace add TerraLabAI/mcp
+/plugin install terralab@terralab-ai-apps
+```
 
-| Client | Setup |
-| --- | --- |
-| Claude Code | `claude mcp add --transport http terralab https://mcp.terra-lab.ai/mcp` (add `--scope user` for all projects) |
-| Cursor | Add to `~/.cursor/mcp.json`: `{"mcpServers": {"terralab": {"url": "https://mcp.terra-lab.ai/mcp"}}}` |
-| VS Code (Copilot) | `code --add-mcp '{"name":"terralab","type":"http","url":"https://mcp.terra-lab.ai/mcp"}'`, or **MCP: Add Server**, HTTP, the URL above |
-| Windsurf | Add to `mcp_config.json`: `{"mcpServers": {"terralab": {"serverUrl": "https://mcp.terra-lab.ai/mcp"}}}` |
-| Gemini CLI | `gemini extensions install https://github.com/TerraLabAI/mcp` |
-| Claude.ai, Claude Desktop | Settings, Connectors, add a custom connector with the URL above |
-| ChatGPT | Search for TerraLab in the ChatGPT app directory |
+In Claude Code, the plugin adds the server and the five skills. For other agents (Cursor,
+Codex, Windsurf, OpenCode, Gemini CLI and others), use the [skills CLI](https://skills.sh/terralabai/mcp):
 
-In `.vscode/mcp.json` the key is `servers`:
-`{"servers": {"terralab": {"type": "http", "url": "https://mcp.terra-lab.ai/mcp"}}}`.
-If tools change, run **MCP: Reset Cached Tools** in VS Code.
+```bash
+npx skills add TerraLabAI/mcp
+```
+
+Or copy one `SKILL.md` into your agent's skills folder, for example
+`~/.claude/skills/use-terralab/SKILL.md`. The Gemini CLI extension carries the skills'
+routing in [`GEMINI.md`](GEMINI.md).
 
 ## Use it from code
 
-Every snippet below talks to the production server. The runnable versions are in
-[`examples/`](examples/), with the date each one was last run.
+The server speaks MCP over Streamable HTTP, so any MCP client library works. The runnable
+versions, with the date each one was last run, are in [`examples/`](examples/).
 
 **Python, official MCP SDK** (`pip install "mcp>=2.3"`)
 
@@ -97,6 +234,9 @@ const result = await client.callTool({
 });
 console.log(result.content[0].text);
 ```
+
+<details>
+<summary>OpenAI, Anthropic, LangGraph, Vercel AI SDK, Google ADK and others</summary>
 
 **OpenAI Agents SDK** (`pip install openai-agents`)
 
@@ -188,70 +328,60 @@ Other frameworks take the same URL as a Streamable HTTP server: CrewAI
 (`BasicMCPClient(url)`), Mastra (`MCPClient` with `url: new URL(...)`), smolagents
 (`MCPClient({"url": ..., "transport": "streamable-http"})`). We have not run these five yet.
 
+</details>
+
 Large areas take time: give your MCP client a timeout of at least 120 seconds. Download links
 serve gzip when you send `Accept-Encoding: gzip` (httpx and requests do it for you).
 
-## Examples
+## Sources and licences
 
-| Example | What it does | Needs |
+Every answer names its sources and licences, and every downloaded file carries its licence.
+
+| Data | Source | Licence |
 | --- | --- | --- |
-| [`examples/python/site_pack.py`](examples/python/site_pack.py) | Chains five calls into a folder of GIS files for any place (buildings, roads, water, DEM, hillshade, slope, contours) plus a summary with licences | `uv` only |
-| [`examples/claude-code/site_brief.sh`](examples/claude-code/site_brief.sh) | A headless Claude Code agent that writes a site brief with download links | Claude Code |
-| [`examples/python/quickstart.py`](examples/python/quickstart.py), [`examples/typescript/`](examples/typescript/) | List the tools and run one | `uv` or Node |
-| [`examples/openai-agents/`](examples/openai-agents/), [`langgraph/`](examples/langgraph/), [`vercel-ai-sdk/`](examples/vercel-ai-sdk/), [`google-adk/`](examples/google-adk/) | The same agent in each framework | a model API key |
+| Map layers (buildings, roads, land use, water, POIs...) | OpenStreetMap and Overture Maps | ODbL 1.0 and the licences each layer lists |
+| Geocoding | TerraLab geocoder (Photon, OpenStreetMap); in France, IGN Géoplateforme (Base Adresse Nationale) | ODbL 1.0; Licence Ouverte 2.0 |
+| Routes and travel areas | Valhalla on the TerraLab server, OpenStreetMap road network | ODbL 1.0 |
+| Elevation, contours, slope | Copernicus DEM GLO-30 | Copernicus DEM licence |
+| Satellite images | Copernicus Sentinel-2 L2A; in France, IGN orthophotos | Copernicus Sentinel data terms; Licence Ouverte 2.0 |
+| French parcels and zoning | DGFiP cadastre, Géoportail de l'Urbanisme | Licence Ouverte 2.0 |
+| French building heights | IGN BD TOPO | Licence Ouverte 2.0 |
 
-```bash
-uv run examples/python/site_pack.py "Porto-Vecchio, Corsica"
-```
-
-## Plugins and skills
-
-The product name is **TerraLab**. The package ID remains `terralab`, and the Claude
-marketplace ID remains `terralab-ai-apps` so existing installation commands keep working.
-
-Claude Code plugin (server plus four workflow skills):
-
-```
-/plugin marketplace add TerraLabAI/mcp
-/plugin install terralab@terralab-ai-apps
-```
-
-The four workflows work for any place in the world:
-
-- **map-data-for-a-place**: administrative boundaries, buildings, roads, railways, transit
-  stops, addresses, points of interest, land use, rivers and lakes, power lines or protected
-  areas for a place, as files that open directly in QGIS.
-- **terrain-and-elevation**: altitude of places, elevation profiles along a route, contour
-  lines and slope for an area.
-- **site-study**: a first look at a site before a project: terrain, water, protected areas,
-  land use and roads around it, and in France the cadastral parcel and the local urban
-  plan (PLU) zone.
-- **places-files-and-coordinates**: put an address, a list of up to 100 addresses or a
-  GIS file on a map, convert it, convert coordinates and pick the right CRS for QGIS.
-
-Install the skills alone with the Vercel skills CLI (they still need the server above):
-
-```sh
-npx skills add TerraLabAI/mcp
-npx skills add TerraLabAI/mcp --skill map-data-for-a-place
-```
-
-Browse [TerraLab skills on skills.sh](https://skills.sh/terralabai/mcp).
-This repository holds the Claude and Cursor plugin packages, the Gemini CLI extension,
-the skills and the examples. The server itself is hosted by TerraLab.
-
-## Data and limits
-
-Elevation, profiles and contour lines come from Copernicus DEM. Map layers come from
-OpenStreetMap and Overture Maps; French parcels from IGN and DGFiP open data. Every answer
-names its sources and licences, and every download carries its licence.
 Results are approximate and not for navigation, surveying or legal boundaries.
+
+## Public contract
+
+- All tools are read-only.
+- Changes are additive: tools and optional parameters are added; a tool, a parameter or an
+  output field is never removed or renamed, and an optional parameter never becomes
+  required, without 30 days' notice on [terra-lab.ai/mcp](https://terra-lab.ai/mcp).
+- Names, attributes and file contents in results come from third parties; the server tells
+  agents to treat them as data, never as instructions.
+
+## Privacy
+
+TerraLab receives only what a request needs (place names, addresses, coordinates, areas and
+files) and logs each call's tool, status and duration, without your query, file or IP
+address. Files you send are processed in memory and not kept; download files are not
+stored, each link rebuilds its file when opened. Usage identifiers are keyed hashes kept in
+West Europe and deleted within 35 days. Full text:
+[privacy policy, AI assistants](https://terra-lab.ai/privacy-policy#ai-assistants).
+
+## Account
+
+Today the server needs no account and no key. A TerraLab account is coming: your agent will
+ask you to sign in once, in the browser. The change is announced on
+[terra-lab.ai/mcp](https://terra-lab.ai/mcp) before it starts.
 
 ## Links
 
-- Documentation and setup: https://terra-lab.ai/mcp
-- Privacy policy: https://terra-lab.ai/privacy-policy#ai-assistants
+- Setup page for every agent: https://terra-lab.ai/mcp
 - Terms of use: https://terra-lab.ai/terms-of-use
+- Privacy policy: https://terra-lab.ai/privacy-policy#ai-assistants
 - Support: https://terra-lab.ai/support or yvann.barbot@terra-lab.ai
+
+This repository holds the plugin packages (Claude, Cursor, Gemini CLI), the skills and the
+examples. The server itself is hosted by TerraLab and is not in this repository. The Claude
+marketplace ID stays `terralab-ai-apps` so existing install commands keep working.
 
 TerraLab also makes AI plugins for QGIS: AI Segmentation, AI Edit and AI Agent.
