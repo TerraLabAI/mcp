@@ -17,12 +17,15 @@ from agents import Agent, Runner
 from agents.mcp import MCPServerStreamableHttp
 
 URL = "https://mcp.terra-lab.ai/mcp"
+# Your TerraLab API key, sent when TERRALAB_API_KEY is set.
+KEY = os.environ.get("TERRALAB_API_KEY")
+HEADERS = {"Authorization": f"Bearer {KEY}"} if KEY else {}
 
 
 async def main(prompt: str) -> None:
     async with MCPServerStreamableHttp(
         name="terralab",
-        params={"url": URL, "timeout": 120},
+        params={"url": URL, "headers": HEADERS, "timeout": 120},
         client_session_timeout_seconds=300,
         cache_tools_list=True,
     ) as terralab:
