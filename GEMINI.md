@@ -9,5 +9,5 @@ French cadastral parcels with their PLU zone.
 - Give the user the download links and the sources and licences each result returns.
 - Results are approximate and not for navigation, surveying or legal boundaries.
 
-Workflow details live in `skills/` (map-data-for-a-place, terrain-and-elevation, site-study,
-places-files-and-coordinates).
+Workflow details live in `skills/` (use-terralab for routing and reporting, map-data-for-a-place,
+terrain-and-elevation, site-study, places-files-and-coordinates).

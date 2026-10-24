@@ -3,6 +3,13 @@
   "notGrouped": "bottom",
   "groupings": [
     {
+      "title": "Start here",
+      "description": "Which TerraLab tool answers which request, how to connect, and how to report sources and licences.",
+      "skills": [
+        "use-terralab"
+      ]
+    },
+    {
       "title": "Map data and terrain",
       "description": "Open map data and elevation for any place in the world, as files for QGIS or any GIS.",
       "skills": [
