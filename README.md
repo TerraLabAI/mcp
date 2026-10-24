@@ -11,7 +11,7 @@ sources and licence. Anywhere in the world, with French cadastre, zoning and bui
 | --- | --- |
 | Server URL | `https://mcp.terra-lab.ai/mcp` |
 | Transport | Streamable HTTP, hosted by TerraLab |
-| Authentication | None today. A TerraLab account is coming; see [Account](#account) |
+| Authentication | A TerraLab account: OAuth sign-in from your agent, or an API key for scripts; see [Account](#account) |
 | Tools | 12, all read-only |
 | Coverage | Worldwide; France in more depth (cadastre, PLU, IGN aerial photos and building heights) |
 
@@ -34,7 +34,8 @@ Pick your agent. It is the same URL everywhere.
 | **OpenClaw** | `openclaw mcp set terralab '{"url":"https://mcp.terra-lab.ai/mcp","transport":"streamable-http"}'` |
 | **Hermes** | `hermes mcp add terralab --url https://mcp.terra-lab.ai/mcp`, or under `mcp_servers:` in `~/.hermes/config.yaml`: `terralab: {url: "https://mcp.terra-lab.ai/mcp"}` |
 
-Then ask your agent:
+The first time, your agent opens the TerraLab sign-in in your browser (in Claude Code run
+`/mcp`, in Codex `codex mcp login terralab`). Then ask:
 
 > Get the buildings within 500 m of Annecy old town as a Shapefile for QGIS.
 
@@ -198,8 +199,9 @@ routing in [`GEMINI.md`](GEMINI.md).
 
 ## Use it from code
 
-The server speaks MCP over Streamable HTTP, so any MCP client library works. The runnable
-versions, with the date each one was last run, are in [`examples/`](examples/).
+The server speaks MCP over Streamable HTTP, so any MCP client library works. From code,
+send `Authorization: Bearer <TerraLab API key>` with each request (see [Account](#account)).
+The runnable versions, with the date each one was last run, are in [`examples/`](examples/).
 
 **Python, official MCP SDK** (`pip install "mcp>=2.3"`)
 
@@ -369,9 +371,16 @@ West Europe and deleted within 35 days. Full text:
 
 ## Account
 
-Today the server needs no account and no key. A TerraLab account is coming: your agent will
-ask you to sign in once, in the browser. The change is announced on
-[terra-lab.ai/mcp](https://terra-lab.ai/mcp) before it starts.
+TerraLab needs a TerraLab account.
+
+- **In an agent**: the first call opens the TerraLab sign-in in your browser (OAuth). Approve
+  the access once; your agent keeps the connection.
+- **From code**: create an API key in your TerraLab dashboard
+  ([terra-lab.ai/dashboard/agent-access](https://terra-lab.ai/dashboard/agent-access)) and send
+  it as `Authorization: Bearer <key>`. Keep it in an environment variable, never in a commit.
+
+Each account has a daily number of data calls; a call past it returns a `daily_limit` error
+that resets at 00:00 UTC.
 
 ## Links
 
