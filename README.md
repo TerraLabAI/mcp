@@ -5,7 +5,10 @@ buildings, roads, land use, water, elevation and contours, routes, travel-time a
 satellite images, as GeoJSON, Shapefile, KML, GPX, CSV, GeoPackage or GeoTIFF, each with its
 sources and licence. Anywhere in the world, with French cadastre, zoning and building heights.
 
-![Four real TerraLab answers of 2026-10-24: 877 buildings in Annecy, contour lines around Chamonix, 5, 10 and 15 minute walking areas from Shibuya Station, and an NDVI image of Saint-Émilion](assets/readme-header.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme-header-dark.png">
+  <img alt="Four real TerraLab answers of 2026-10-24: 877 buildings in Annecy, contour lines around Chamonix, 5, 10 and 15 minute walking areas from Shibuya Station, and an NDVI image of Saint-Émilion" src="assets/readme-header.png">
+</picture>
 
 | | |
 | --- | --- |
