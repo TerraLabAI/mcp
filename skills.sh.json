@@ -11,7 +11,7 @@
     },
     {
       "title": "Map data and terrain",
-      "description": "Open map data and elevation for any place in the world, as files for QGIS or any GIS.",
+      "description": "Open map data and elevation for any place in the world, as GIS files.",
       "skills": [
         "map-data-for-a-place",
         "terrain-and-elevation"

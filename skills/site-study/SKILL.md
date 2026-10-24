@@ -78,7 +78,7 @@ a parcel, a zone or a rule.
 
 - A short table: check, result, source.
 - The download links exactly as the tool returned them. Copy each one whole; never retype,
-  shorten or rebuild a link, since one changed character breaks it. They open in QGIS.
+  shorten or rebuild a link, since one changed character breaks it. They open in QGIS or any GIS tool.
 - The sources and licences the tools return.
 - The limits above that apply to the site.
 

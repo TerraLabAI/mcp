@@ -1,6 +1,6 @@
 ---
 name: terrain-and-elevation
-description: Gives terrain information anywhere in the world from the Copernicus 30 m elevation model. Covers the altitude of places, an elevation profile between points or along a route with total ascent and descent, contour lines (topographic lines, courbes de niveau) as a file for QGIS, and how steep or flat an area is. Use when someone asks for a DEM, SRTM, a relief or terrain model, elevation, altitude, height above sea level, contours, slope, a hiking or cycling profile, or the topography of a place, for example "I need the DEM of Milan" or "contour lines around Chamonix every 10 m".
+description: Gives terrain information anywhere in the world from the Copernicus 30 m elevation model. Covers the altitude of places, an elevation profile between points or along a route with total ascent and descent, contour lines (topographic lines, courbes de niveau) as a GIS file, and how steep or flat an area is. Use when someone asks for a DEM, SRTM, a relief or terrain model, elevation, altitude, height above sea level, contours, slope, a hiking or cycling profile, or the topography of a place, for example "I need the DEM of Milan" or "contour lines around Chamonix every 10 m".
 ---
 
 # Terrain and elevation
@@ -61,7 +61,7 @@ Give places as the user names them, with the country; the tool locates them.
 - For an area: the interval, the number of contour lines and the slope statistics.
 - The download links exactly as the tool returned them. Copy each one whole; never retype,
   shorten or rebuild a link, since one changed character breaks it. Contours as Shapefile,
-  GeoJSON or KML open directly in QGIS.
+  GeoJSON or KML open directly in QGIS or any GIS tool.
 - The source the tool returns: Copernicus DEM, with its licence.
 
 Done means: the altitude, profile or contours were returned for the right place, with

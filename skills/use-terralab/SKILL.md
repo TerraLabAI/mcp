@@ -67,7 +67,7 @@ parcel numbers or addresses.
 ## Report
 
 - Lead with the figures the tool returned (counts, metres, km², minutes), each with its unit.
-- Give every download link, named by format, and say which one opens in QGIS (GeoPackage,
+- Give every download link, named by format, and say which one opens in a GIS tool such as QGIS (GeoPackage,
   Shapefile, GeoJSON, GeoTIFF).
 - Name each source and its licence as the result states them; a file carries its licence too.
 - Say when an extract is `truncated`, when features crossing the edge are returned whole, and

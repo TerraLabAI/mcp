@@ -1,6 +1,6 @@
 ---
 name: places-files-and-coordinates
-description: Puts addresses, coordinates or a GIS file on a map and converts them. Covers geocoding one address or a list of up to 100 (pasted or CSV) and the address at a point, opening and checking GeoJSON, KML, KMZ, GPX, zipped Shapefile, CSV or WKT files, converting between these formats, converting coordinates between decimal degrees, DMS, UTM, MGRS, Lambert 93 and EPSG codes, and choosing the right CRS for QGIS. Use when someone wants a list of addresses or clients on a map, the coordinates of an address, a KML turned into a Shapefile, a GPX opened, coordinates converted, or data that lands in the wrong place.
+description: Puts addresses, coordinates or a GIS file on a map and converts them. Covers geocoding one address or a list of up to 100 (pasted or CSV) and the address at a point, opening and checking GeoJSON, KML, KMZ, GPX, zipped Shapefile, CSV or WKT files, converting between these formats, converting coordinates between decimal degrees, DMS, UTM, MGRS, Lambert 93 and EPSG codes, and choosing the right CRS for a GIS project, for example in QGIS. Use when someone wants a list of addresses or clients on a map, the coordinates of an address, a KML turned into a Shapefile, a GPX opened, coordinates converted, or data that lands in the wrong place.
 ---
 
 # Places, files and coordinates
@@ -62,7 +62,7 @@ one call.
    national grid with `source_epsg` and show the result for the user to confirm.
 4. Never guess an EPSG code silently. Say which one you assumed.
 
-## Choosing a CRS for QGIS
+## Choosing a CRS
 
 1. Keep WGS 84 (EPSG:4326) for viewing and exchange.
 2. For distances or areas, use a local projected CRS. `convert_coordinates` returns
@@ -75,7 +75,7 @@ one call.
 - The result in a few lines, with any warning from the tool.
 - The download links exactly as the tool returned them. Copy each one whole; never retype,
   shorten or rebuild a link, since one changed character breaks it. Shapefile, GeoJSON, KML
-  and CSV open directly in QGIS by drag and drop.
+  and CSV open directly in QGIS or any GIS tool by drag and drop.
 - The recommended CRS when relevant.
 - One line saying results are approximate and not for navigation, surveying or legal boundaries.
 

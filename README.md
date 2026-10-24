@@ -8,7 +8,7 @@ https://mcp.terra-lab.ai/mcp
 
 Data about a place is spread across national portals, file formats and licences, where an agent cannot
 reach it. TerraLab MCP gives any agent geodata for any place on Earth: map data, terrain, routes, satellite
-images and French parcels, each with its source and licence, as files QGIS opens as they are. It is built
+images and French parcels, each with its source and licence, as GIS files that open as they are in QGIS or any other GIS tool. It is built
 by TerraLab, whose QGIS plugins show every day what GIS users ask for.
 
 <picture>
@@ -44,7 +44,7 @@ Pick your agent. It is the same URL everywhere.
 The first time, your agent opens the TerraLab sign-in in your browser (in Claude Code run
 `/mcp`, in Codex `codex mcp login terralab`). Then ask:
 
-> Get the buildings within 500 m of Annecy old town as a Shapefile for QGIS.
+> Get the buildings within 500 m of Annecy old town as a Shapefile.
 
 Each line follows the client's own MCP documentation:
 [Claude Code](https://code.claude.com/docs/en/mcp),
@@ -88,7 +88,7 @@ download links that build the file when opened.
 Five real requests, each with the exact call and the answer production returned on
 2026-10-24. Paste the question into your agent, or send the call from code.
 
-### 1. Buildings of a town centre, for QGIS
+### 1. Buildings of a town centre, as a GIS file
 
 > Get the buildings within 500 m of Annecy old town as GeoJSON and Shapefile.
 
@@ -179,7 +179,7 @@ server above; installing a skill alone does not connect it.
 | Skill | When your agent uses it |
 | --- | --- |
 | [`use-terralab`](skills/use-terralab/SKILL.md) | Any request about a real place or a GIS file: routes it to the right tool, resolves the place honestly, reports figures, files, sources and licences |
-| [`map-data-for-a-place`](skills/map-data-for-a-place/SKILL.md) | Boundaries, buildings, roads, transit, addresses, POIs, land use, water, power lines or protected areas as files for QGIS |
+| [`map-data-for-a-place`](skills/map-data-for-a-place/SKILL.md) | Boundaries, buildings, roads, transit, addresses, POIs, land use, water, power lines or protected areas as GIS files |
 | [`terrain-and-elevation`](skills/terrain-and-elevation/SKILL.md) | Altitude, profiles along a route, contour lines and slope |
 | [`site-study`](skills/site-study/SKILL.md) | A first look at a site before a project; in France, parcel and PLU zone |
 | [`places-files-and-coordinates`](skills/places-files-and-coordinates/SKILL.md) | Addresses and GIS files on a map, file conversion, coordinates and CRS choice |

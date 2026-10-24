@@ -1,6 +1,6 @@
 ---
 name: map-data-for-a-place
-description: Gets open map data for any place in the world as a map, a count and a file that opens in QGIS. Covers administrative boundaries (countries, regions, departments, districts), building footprints, roads, railways, transit stops, addresses, points of interest such as schools, pharmacies or shops, land use, rivers and lakes, power lines and protected areas. Use when someone asks for GIS data, a layer, a shapefile or GeoJSON, OpenStreetMap or Overture data for an area, or simply where or how many of something there are in a place, for example all schools in Kisumu, the departments of Côte d'Ivoire or the buildings of Porto-Vecchio.
+description: Gets open map data for any place in the world as a map, a count and a GIS file, for example for QGIS. Covers administrative boundaries (countries, regions, departments, districts), building footprints, roads, railways, transit stops, addresses, points of interest such as schools, pharmacies or shops, land use, rivers and lakes, power lines and protected areas. Use when someone asks for GIS data, a layer, a shapefile or GeoJSON, OpenStreetMap or Overture data for an area, or simply where or how many of something there are in a place, for example all schools in Kisumu, the departments of Côte d'Ivoire or the buildings of Porto-Vecchio.
 ---
 
 # Map data for a place

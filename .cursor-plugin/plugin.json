@@ -1,6 +1,6 @@
 {
   "name": "terralab",
-  "description": "Geodata for any place, inside your agent: buildings, roads, addresses, boundaries, terrain, routes, travel-time areas and satellite images anywhere in the world, plus parcels and building heights in France. Each answer shows a map, names its source and licence, and gives files that open in QGIS: GeoPackage, Shapefile, GeoJSON, KML, CSV or GeoTIFF.",
+  "description": "Geodata for any place, inside your agent: buildings, roads, addresses, boundaries, terrain, routes, travel-time areas and satellite images anywhere in the world, plus parcels and building heights in France. Each answer shows a map, names its source and licence, and gives files for any GIS tool: GeoPackage, Shapefile, GeoJSON, KML, CSV or GeoTIFF.",
   "version": "1.1.0",
   "author": { "name": "TerraLab", "email": "yvann.barbot@terra-lab.ai" },
   "homepage": "https://terra-lab.ai/mcp",
