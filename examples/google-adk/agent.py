@@ -19,9 +19,14 @@ from google.adk.tools.mcp_tool import McpToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPConnectionParams
 from google.genai import types
 
+# Your TerraLab API key, sent when TERRALAB_API_KEY is set.
+KEY = os.environ.get("TERRALAB_API_KEY")
 terralab = McpToolset(
     connection_params=StreamableHTTPConnectionParams(
-        url="https://mcp.terra-lab.ai/mcp", timeout=120, sse_read_timeout=300
+        url="https://mcp.terra-lab.ai/mcp",
+        headers={"Authorization": f"Bearer {KEY}"} if KEY else None,
+        timeout=120,
+        sse_read_timeout=300,
     )
 )
 
