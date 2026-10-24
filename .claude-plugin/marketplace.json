@@ -11,7 +11,7 @@
     {
       "name": "terralab",
       "source": "./",
-      "description": "Real geospatial data for any place, from a chat: buildings, roads, addresses, land use, waterways, transit and protected areas on an interactive map, with sources and licences, as Shapefile, GeoJSON, KML or CSV. Also GIS file conversion, coordinates and CRS, elevation and contours. No account needed."
+      "description": "Real geospatial data for any place, from a chat: buildings, roads, addresses, land use, waterways, transit and protected areas on an interactive map, with sources and licences, as Shapefile, GeoJSON, KML or CSV. Also GIS file conversion, coordinates and CRS, elevation and contours."
     }
   ]
 }
