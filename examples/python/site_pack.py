@@ -9,19 +9,31 @@
 
 Chains four TerraLab tools (find_places, extract_open_data x3, get_elevation),
 downloads every file into ./site-pack-<place>/ and writes a summary.md with the
-counts, sources and licences. Open the folder in QGIS. No key, no account.
+counts, sources and licences. Open the folder in QGIS. Set TERRALAB_API_KEY to your
+TerraLab API key first.
 """
 import argparse
 import http.client
 import asyncio
 import gzip
+import os
 import re
 import urllib.request
 from pathlib import Path
 
 from mcp import Client
+from mcp.client.streamable_http import create_mcp_http_client, streamable_http_client
 
 URL = "https://mcp.terra-lab.ai/mcp"
+
+
+def server():
+    """The TerraLab server, with your API key when TERRALAB_API_KEY is set."""
+    key = os.environ.get("TERRALAB_API_KEY")
+    if not key:
+        return URL
+    headers = {"Authorization": f"Bearer {key}"}
+    return streamable_http_client(URL, http_client=create_mcp_http_client(headers=headers))
 LAYERS = ["buildings", "roads", "waterways"]
 
 
@@ -59,7 +71,7 @@ async def main(place: str, radius: int) -> None:
     summary = [f"# Site pack: {place}", ""]
     sources: dict[str, str] = {}
 
-    async with Client(URL) as client:
+    async with Client(server()) as client:
         # 1. Resolve the place once, then reuse the point so every layer covers the same area.
         found = await client.call_tool("find_places", {"query": place, "limit": 1})
         places = (found.structured_content or {}).get("places") or []
