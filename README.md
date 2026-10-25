@@ -34,7 +34,7 @@ Pick your agent. It is the same URL everywhere.
 | --- | --- |
 | **Claude Code** | `claude mcp add --transport http terralab https://mcp.terra-lab.ai/mcp` (add `--scope user` for every project) |
 | **Claude.ai, Claude Desktop** | [Add a custom connector](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=TerraLab&connectorUrl=https%3A%2F%2Fmcp.terra-lab.ai%2Fmcp) with the URL above (Settings, Connectors, Add) |
-| **ChatGPT** | [Open TerraLab in the ChatGPT app directory](https://chatgpt.com/apps/terralab/asdk_app_6abeb2f16190819199cc1be0ed69e8d4) and add it, then type `@TerraLab` in a chat |
+| **ChatGPT** | [Open TerraLab in the ChatGPT app directory](https://chatgpt.com/plugins/plugin_asdk_app_6abeb2f16190819199cc1be0ed69e8d4) and add it, then type `@TerraLab` in a chat |
 | **Cursor** | [Add to Cursor](https://cursor.com/en/install-mcp?name=terralab&config=eyJ1cmwiOiJodHRwczovL21jcC50ZXJyYS1sYWIuYWkvbWNwIn0=), or in `~/.cursor/mcp.json`: `{"mcpServers": {"terralab": {"url": "https://mcp.terra-lab.ai/mcp"}}}` |
 | **VS Code (Copilot)** | [Install in VS Code](https://vscode.dev/redirect/mcp/install?name=terralab&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.terra-lab.ai%2Fmcp%22%7D), or `code --add-mcp '{"name":"terralab","type":"http","url":"https://mcp.terra-lab.ai/mcp"}'` |
 | **Windsurf** | Cascade, `...`, Open MCP config file, then add `{"mcpServers": {"terralab": {"serverUrl": "https://mcp.terra-lab.ai/mcp"}}}` |
