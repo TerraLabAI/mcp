@@ -1,6 +1,6 @@
 ---
 name: map-data-for-a-place
-description: Gets open map data for any place in the world as a map, a count and a GIS file, for example for QGIS. Covers administrative boundaries (countries, regions, departments, districts), building footprints, roads, railways, transit stops, addresses, points of interest such as schools, pharmacies or shops, land use, rivers and lakes, power lines and protected areas. Use when someone asks for GIS data, a layer, a shapefile or GeoJSON, OpenStreetMap or Overture data for an area, or simply where or how many of something there are in a place, for example all schools in Kisumu, the departments of Côte d'Ivoire or the buildings of Porto-Vecchio.
+description: Gets open map data for any place in the world as a map, a count and a GIS file, for example for QGIS. Covers administrative boundaries (countries, regions, departments, districts), building footprints, roads, railways, transit stops, addresses, points of interest such as schools, pharmacies or shops, land use, rivers and lakes, power lines and protected areas, plus hosted datasets such as land cover, official boundaries and hazard maps. Use when someone asks for GIS data, a layer, a shapefile or GeoJSON, OpenStreetMap or Overture data for an area, or simply where or how many of something there are in a place, for example all schools in Kisumu, the departments of Côte d'Ivoire or the buildings of Porto-Vecchio.
 ---
 
 # Map data for a place
@@ -53,6 +53,20 @@ plugin: the tool returns the data itself.
 
 If the user asks what data exists for a project, name the three or four useful themes and
 let them choose before extracting several.
+
+## Data that is not a map layer
+
+Land cover, official administrative boundaries from a national agency, hazard maps,
+population grids, soil or climate come from the TerraLab catalogue, not from `extract_open_data`.
+
+1. Call `find_datasets` with a few words and the `area` (a country or a place). Read `hosted`
+   first: only hosted datasets can be extracted; for the others give the page and licence the
+   result names.
+2. Call `extract_dataset` with the dataset id and the same `area`, plus the `variables` the
+   dataset needs (admin level, year, return period). It returns a GeoTIFF or a GeoPackage
+   with the licence, or only figures with `summary` true.
+3. If nothing fits, offer to file a request with `request_data` and do it only when the user
+   agrees: it is the one tool that records something at TerraLab.
 
 ## Wrong place
 

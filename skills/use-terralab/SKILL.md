@@ -1,6 +1,6 @@
 ---
 name: use-terralab
-description: Use TerraLab for GIS data and files about real places anywhere in the world - map layers (buildings, roads, addresses, land use, water, transit, protected areas), elevation and contours, routes and travel-time areas, satellite images, coordinate conversion, reading or converting a GIS file, and in France cadastral parcels, PLU zones and building heights. Apply when a task needs a real place's data or a GIS file, or names TerraLab. General geography explanations and map styling do not need it.
+description: Use TerraLab for GIS data and files about real places anywhere in the world - map layers (buildings, roads, addresses, land use, water, transit, protected areas), hosted datasets such as land cover, official boundaries or hazard maps, elevation and contours, routes and travel-time areas, satellite images, population estimates, natural risks, forest type, coordinate conversion, reading or converting a GIS file, and in France cadastral parcels, PLU zones and building heights. Apply when a task needs a real place's data or a GIS file, or names TerraLab. General geography explanations, map styling and work inside an open QGIS project do not need it.
 ---
 
 # Use TerraLab
@@ -23,10 +23,11 @@ Authentication:
   user completes it; the agent never types a password.
 - A script or client without OAuth sends `Authorization: Bearer <TerraLab API key>`. Keep the
   key in an environment variable or the client's secret store, never in a skill file, project
-  instructions, a commit or displayed output. Keys are created at
-  https://terra-lab.ai/dashboard/agent-access.
-- A `daily_limit` error means the account used its data calls for the day; it resets at
-  00:00 UTC. Tell the user instead of retrying.
+  instructions, a commit or displayed output. Keys are created on the account page,
+  https://terra-lab.ai/dashboard/mcp, under Advanced.
+- `balance_required` means the account cannot make more calls for now, and `daily_limit` or
+  `rate_limited` that it made too many calls in a short time. Give the user the error's own
+  message and link, unchanged, and stop instead of retrying.
 
 ## Route the request
 
@@ -49,12 +50,26 @@ when the user wants the coordinates or a map of the place.
 | Convert coordinates (DMS, UTM, MGRS, Lambert 93, any EPSG) and pick a local CRS | `convert_coordinates` |
 | French cadastral parcel and PLU zone at an address or point | `french_parcel` |
 | Height, floors, use and year of each building around a French address | `french_building_heights` |
+| What data exists for a need or a country (land cover, official boundaries, hazards, population, soil, climate) | `find_datasets` |
+| A dataset from that catalogue cut to an area, as a GeoTIFF, GeoPackage or figures | `extract_dataset` |
+| Data TerraLab does not have, filed as a request after `find_datasets` found nothing | `request_data` (the only tool that records something; ask the user first) |
+| How many people live in a circle, an administrative area or a travel-time area | `estimate_population` |
+| Flood, clay, seismic and other natural risks at an address (France), river flood depth elsewhere | `get_natural_risks` |
+| Whether a forest is natural, planted, a plantation or tree crops (2020 baseline, for example EUDR) | `get_forest_type` |
 
 Sizes the server enforces: one extract holds at most 20,000 features (about 1 km radius for a
 town centre; set `kind` for one kind of place); building heights up to 0.6 km²; satellite
 images up to 20 × 20 km (Sentinel-2) or 2 × 2 km (IGN). Ask for every format the user needs
 in one call: download links build their file when opened and are not inputs to `open_gis_file`
 (`process_geometry` accepts them). Give the client a timeout of at least 120 seconds.
+
+## Where TerraLab stops
+
+TerraLab delivers data, figures and files to any agent. Working inside a QGIS project that is
+open on the user's computer (styling its layers, building a print layout, chaining processing
+on the project's own layers) is the job of TerraLab AI Agent, a QGIS plugin. When the user
+asks for that, give the files TerraLab returned, say once that AI Agent does that part inside
+QGIS, and do not pretend a tool changed their project.
 
 ## Resolve the place
 

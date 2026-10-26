@@ -21,7 +21,7 @@ by TerraLab, whose QGIS plugins show every day what GIS users ask for.
 | Server URL | `https://mcp.terra-lab.ai/mcp` |
 | Transport | Streamable HTTP, hosted by TerraLab |
 | Authentication | A TerraLab account: OAuth sign-in from your agent, or an API key for scripts; see [Account](#account) |
-| Tools | 12, all read-only |
+| Tools | 18; 17 read-only, and `request_data`, which files a data request |
 | Coverage | Worldwide; France in more depth (cadastre, PLU, IGN aerial photos and building heights) |
 
 Made by [TerraLab](https://terra-lab.ai), which builds AI plugins for QGIS.
@@ -57,7 +57,7 @@ In VS Code, run **MCP: Reset Cached Tools** after the server adds a tool.
 
 ## What you can ask
 
-Twelve tools, named by what they do. Your agent picks the tool; most tools find the place
+Eighteen tools, named by what they do. Your agent picks the tool; most tools find the place
 themselves, so a name or an address is enough.
 
 | Do | Tool | Ask your agent |
@@ -74,10 +74,20 @@ themselves, so a name or an address is enough.
 | **Convert** coordinates | `convert_coordinates` | "Convert X 942507, Y 6538034 in Lambert 93 to GPS, and which CRS should I use in QGIS?" |
 | **Look up** a French parcel and its zone | `french_parcel` | "Which cadastral parcel and PLU zone is the town hall of Annecy on?" |
 | **Measure** French building heights | `french_building_heights` | "How tall are the buildings within 150 m of Place Bellecour, Lyon?" |
+| **Find** a dataset | `find_datasets` | "What land cover data do you have for Kenya?" |
+| **Extract** a hosted dataset | `extract_dataset` | "ESA WorldCover for 5 km around Nakuru as a GeoTIFF" |
+| **Ask** for missing data | `request_data` | "You don't have the official flood zones of Morocco? Ask TerraLab to add them." |
+| **Count** people in an area | `estimate_population` | "How many people live within 15 minutes' walk of Nairobi Central station?" |
+| **Check** natural risks | `get_natural_risks` | "Is 12 quai Saint-Antoine, Lyon in a flood zone?" |
+| **Type** a forest | `get_forest_type` | "Is the forest around this plot natural or planted? I need it for EUDR." |
 
 `extract_open_data` layers: buildings, roads, addresses, administrative boundaries and
 divisions, places, land use, points of interest (one `kind` such as pharmacies or schools),
 waterways, water areas, power lines, railways, routes, transit stops and protected areas.
+
+TerraLab MCP delivers data, figures and files to any agent. To work inside a QGIS project open
+on your computer (styling layers, print layouts, processing chained on the project's layers),
+use [TerraLab AI Agent](https://terra-lab.ai/ai-agent), the QGIS plugin.
 
 Every result has a short text answer for the model, structured content for code (`downloads`,
 `sources` and the figures of each tool), an interactive map in clients that show one, and
@@ -353,12 +363,17 @@ Every answer names its sources and licences, and every downloaded file carries i
 | Satellite images | Copernicus Sentinel-2 L2A; in France, IGN orthophotos | Copernicus Sentinel data terms; Licence Ouverte 2.0 |
 | French parcels and zoning | DGFiP cadastre, Géoportail de l'Urbanisme | Licence Ouverte 2.0 |
 | French building heights | IGN BD TOPO | Licence Ouverte 2.0 |
+| Hosted catalogue datasets (land cover, boundaries, hazards, soil, climate...) | the publisher each answer names | quoted from the catalogue in each answer |
+| Population | GHS-POP 2025 (EC JRC), or WorldPop on request | CC BY 4.0; WorldPop as each answer names it |
+| Natural risks | In France, TerraLab copies of Géorisques files, refreshed weekly; elsewhere, JRC river flood maps | named in each answer |
+| Forest type | Forest Typology (ForTy) 2020 v1, Google DeepMind | named in each answer |
 
 Results are approximate and not for navigation, surveying or legal boundaries.
 
 ## Public contract
 
-- All tools are read-only.
+- Every tool is read-only except `request_data`, which files a data request at TerraLab;
+  your agent should call it only when you agree.
 - Changes are additive: tools and optional parameters are added; a tool, a parameter or an
   output field is never removed or renamed, and an optional parameter never becomes
   required, without 30 days' notice on [terra-lab.ai/mcp](https://terra-lab.ai/mcp).
@@ -369,7 +384,8 @@ Results are approximate and not for navigation, surveying or legal boundaries.
 
 TerraLab receives only what a request needs (place names, addresses, coordinates, areas and
 files) and logs each call's tool, status and duration, without your query, file or IP
-address. Files you send are processed in memory and not kept; download files are not
+address. A data request filed with `request_data` keeps its description and example places
+so that TerraLab can handle it. Files you send are processed in memory and not kept; download files are not
 stored, each link rebuilds its file when opened. Usage identifiers are keyed hashes kept in
 West Europe and deleted within 35 days. Full text:
 [privacy policy, AI assistants](https://terra-lab.ai/privacy-policy#ai-assistants).

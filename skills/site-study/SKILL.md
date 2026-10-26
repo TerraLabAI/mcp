@@ -1,6 +1,6 @@
 ---
 name: site-study
-description: Builds a first look at a site or plot anywhere in the world before a project such as a house, an extension, a solar farm, a shop or a purchase. Combines the terrain (altitude and slope), what lies around it (buildings, roads, rivers and lakes, land use, protected areas, power lines, transit) and, in France, the cadastral parcel and the local urban plan (PLU) zone. Use when someone asks what is on or around an address or a plot, whether a site is flat, near water or in a protected area, or asks about a parcel, its section and number, cadastre, zoning or PLU in France.
+description: Builds a first look at a site or plot anywhere in the world before a project such as a house, an extension, a solar farm, a shop or a purchase. Combines the terrain (altitude and slope), natural risks such as flood zones, what lies around it (buildings, roads, rivers and lakes, land use, protected areas, power lines, transit) and, in France, the cadastral parcel and the local urban plan (PLU) zone. Use when someone asks what is on or around an address or a plot, whether a site is flat, near water, in a flood zone or in a protected area, or asks about a parcel, its section and number, cadastre, zoning or PLU in France.
 ---
 
 # Site study
@@ -19,7 +19,7 @@ Use the connected tools' current input schemas; tool prefixes vary between clien
 1. Get the site: a street address with its town and country, a place name, or latitude
    and longitude. If only a vague area is given, ask for an address or a point.
 2. Ask the purpose if it is unclear, since it decides the checks. Without an answer, run
-   the default checks: terrain, water, protected areas, land use and roads.
+   the default checks: terrain, water, natural risks, protected areas, land use and roads.
 3. Run the checks below that fit the purpose. Each tool locates the place itself; call
    `find_places` only when the user wants the coordinates or a map of the address.
 4. In France, add the parcel and zoning section.
@@ -42,6 +42,8 @@ Use the connected tools' current input schemas; tool prefixes vary between clien
 | Straight-line distance to a place (station, school, coast) | `measure`, `method` `"distance"` with the site and the place |
 | A recent picture of the site | `get_satellite_image`, `area` with `radius_m` 200 to 1,000 (IGN aerial photo in France, Sentinel-2 elsewhere) |
 | Height of neighbouring buildings (France) | `french_building_heights`, `area` with `radius_m` 100 to 300 |
+| Natural risks: flood zones, clay shrink-swell, seismic zone, cavities, commune risks (France); river flood depth elsewhere | `get_natural_risks` with the same `address`, or `latitude` and `longitude` |
+| How many people live within a walk or a radius (housing, retail) | `estimate_population`, `travel` with the site, `minutes` and `mode`, or `area` with `radius_m` |
 
 Use the same site and radius in every call so the results line up. Report distances only
 when the tool returns them; otherwise say "within the radius".
@@ -69,10 +71,13 @@ a parcel, a zone or a rule.
 
 ## Limits to respect
 
-1. There is no flood, soil, noise or pollution data in these tools. Do not guess them; say
-   they need the official risk maps of the country.
+1. `get_natural_risks` gives each risk a status. `failed` means the source did not answer:
+   say the risk is unknown and can be checked again, never that there is none. `not_mapped`
+   means no source covers it there. Outside France it only gives river flood depth. There is
+   no noise or pollution data: say it needs the official maps of the country.
 2. Elevation comes from a 30 m surface model that includes buildings and trees.
-3. This is a first look, not a legal, planning or engineering opinion.
+3. Population is a modelled estimate from a 100 m grid, not a census count.
+4. This is a first look, not a legal, planning or engineering opinion.
 
 ## What the answer must contain
 
