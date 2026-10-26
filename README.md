@@ -54,6 +54,8 @@ Each line follows the client's own MCP documentation:
 [Gemini CLI](https://geminicli.com/docs/tools/mcp-server),
 [Codex](https://developers.openai.com/codex/mcp).
 In VS Code, run **MCP: Reset Cached Tools** after the server adds a tool.
+If you added TerraLab to Claude before October 26, 2026 and it now shows no tools, remove the
+connector and add it again: Claude then offers the TerraLab sign-in.
 
 ## What you can ask
 
