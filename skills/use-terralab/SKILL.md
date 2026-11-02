@@ -43,12 +43,15 @@ when the user wants the coordinates or a map of the place.
 | Altitude of points, a profile along a route, or DEM, hillshade, slope and contours for an area | `get_elevation` |
 | Driving, walking or cycling route through 2 to 25 places | `get_route` |
 | Area reachable within a time or a road distance (isochrone) | `get_travel_area` |
+| Distances and travel times from up to 25 origins to up to 25 destinations (a matrix) | `get_travel_times` |
 | Straight-line distance, area and perimeter, a circle or buffer of a radius | `measure` |
 | Buffer, union, intersection, difference, clip, simplify, centroid or area of a layer | `process_geometry` |
 | Satellite image, false colour or NDVI (Sentinel-2 worldwide, IGN aerial photo in France) | `get_satellite_image` |
+| NDVI, NDWI, burn or built-up index figures for an area, or their change between two dates | `get_satellite_index` |
 | Read, map or convert a GeoJSON, KML, KMZ, GPX, zipped Shapefile, CSV or WKT | `open_gis_file` |
 | Convert coordinates (DMS, UTM, MGRS, Lambert 93, any EPSG) and pick a local CRS | `convert_coordinates` |
 | French cadastral parcel and PLU zone at an address or point | `french_parcel` |
+| Every French cadastral parcel in an area (up to 1 km radius), with its PLU zone | `french_parcels_in_area` |
 | Height, floors, use and year of each building around a French address | `french_building_heights` |
 | What data exists for a need or a country (land cover, official boundaries, hazards, population, soil, climate) | `find_datasets` |
 | A dataset from that catalogue cut to an area, as a GeoTIFF, GeoPackage or figures | `extract_dataset` |

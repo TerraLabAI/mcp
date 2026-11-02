@@ -21,7 +21,7 @@ by TerraLab, whose QGIS plugins show every day what GIS users ask for.
 | Server URL | `https://mcp.terra-lab.ai/mcp` |
 | Transport | Streamable HTTP, hosted by TerraLab |
 | Authentication | A TerraLab account: OAuth sign-in from your agent, or an API key for scripts; see [Account](#account) |
-| Tools | 18; 17 read-only, and `request_data`, which files a data request |
+| Tools | 21; 20 read-only, and `request_data`, which files a data request |
 | Coverage | Worldwide; France in more depth (cadastre, PLU, IGN aerial photos and building heights) |
 
 Made by [TerraLab](https://terra-lab.ai), which builds AI plugins for QGIS.
@@ -59,7 +59,7 @@ connector and add it again: Claude then offers the TerraLab sign-in.
 
 ## What you can ask
 
-Eighteen tools, named by what they do. Your agent picks the tool; most tools find the place
+Twenty-one tools, named by what they do. Your agent picks the tool; most tools find the place
 themselves, so a name or an address is enough.
 
 | Do | Tool | Ask your agent |
@@ -69,12 +69,15 @@ themselves, so a name or an address is enough.
 | **Read** elevation, profiles, contours | `get_elevation` | "Contour lines every 10 m and a slope map around Annecy old town" |
 | **Route** between places | `get_route` | "Cycling route from Nantes to Saint-Nazaire as a GPX, avoiding highways" |
 | **Reach** within a time | `get_travel_area` | "Everything within 10 and 20 minutes' drive of Bordeaux station" |
+| **Time** trips between many places | `get_travel_times` | "Driving time from each of our 3 warehouses to these 20 stores, as a CSV" |
 | **Measure** distances and areas | `measure` | "Area of this polygon in hectares, and a 500 m buffer around it" |
 | **Process** a layer | `process_geometry` | "Clip these buildings to the commune boundary and dissolve them by type" |
 | **See** from space | `get_satellite_image` | "Latest cloud-free NDVI of my vineyard near Saint-Émilion" |
+| **Compare** an index over time | `get_satellite_index` | "How much greener was this vineyard in July than in January, in hectares?" |
 | **Open** and convert a file | `open_gis_file` | "Turn this GPX track into a Shapefile" |
 | **Convert** coordinates | `convert_coordinates` | "Convert X 942507, Y 6538034 in Lambert 93 to GPS, and which CRS should I use in QGIS?" |
 | **Look up** a French parcel and its zone | `french_parcel` | "Which cadastral parcel and PLU zone is the town hall of Annecy on?" |
+| **List** French parcels in an area | `french_parcels_in_area` | "Every parcel within 300 m of Annecy town hall, with its PLU zone, as a GeoPackage" |
 | **Measure** French building heights | `french_building_heights` | "How tall are the buildings within 150 m of Place Bellecour, Lyon?" |
 | **Find** a dataset | `find_datasets` | "What land cover data do you have for Kenya?" |
 | **Extract** a hosted dataset | `extract_dataset` | "ESA WorldCover for 5 km around Nakuru as a GeoTIFF" |
