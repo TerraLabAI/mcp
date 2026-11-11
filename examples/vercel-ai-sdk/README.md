@@ -1,3 +1,25 @@
+# Vercel AI SDK
+
+Save each block below under the file name in its heading, in one folder, then run it as [the examples table](../README.md) says.
+
+## `package.json`
+
+```json
+{
+  "name": "terralab-vercel-ai-sdk-example",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/mcp": "^2.0.83",
+    "@ai-sdk/openai": "^4.0.101",
+    "ai": "^7.0.150"
+  }
+}
+```
+
+## `agent.mjs`
+
+```javascript
 // A Vercel AI SDK agent with TerraLab tools.
 //   npm install
 //   OPENAI_API_KEY=sk-... node agent.mjs "Schools within 2 km of Kisumu centre as CSV"
@@ -35,3 +57,4 @@ if (!process.env.OPENAI_API_KEY) {
   console.log(text);
 }
 await terralab.close();
+```

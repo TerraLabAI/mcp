@@ -1,3 +1,10 @@
+# LangChain / LangGraph
+
+Save each block below under the file name in its heading, in one folder, then run it as [the examples table](../README.md) says.
+
+## `agent.py`
+
+```python
 # /// script
 # requires-python = ">=3.10"
 # dependencies = ["langchain-mcp-adapters>=0.3", "langchain>=1.0", "langchain-openai"]
@@ -45,3 +52,4 @@ async def main(prompt: str) -> None:
 
 
 asyncio.run(main(" ".join(sys.argv[1:]) or "What is the elevation of the Eiffel Tower?"))
+```

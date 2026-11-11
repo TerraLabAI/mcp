@@ -1,3 +1,10 @@
+# Google ADK
+
+Save each block below under the file name in its heading, in one folder, then run it as [the examples table](../README.md) says.
+
+## `agent.py`
+
+```python
 # /// script
 # requires-python = ">=3.10"
 # dependencies = ["google-adk[mcp]>=2.12"]
@@ -57,3 +64,4 @@ async def main(prompt: str) -> None:
 
 if __name__ == "__main__":
     asyncio.run(main(" ".join(sys.argv[1:]) or "What is the elevation of the Eiffel Tower?"))
+```

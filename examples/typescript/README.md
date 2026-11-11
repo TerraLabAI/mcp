@@ -1,3 +1,23 @@
+# TypeScript MCP SDK
+
+Save each block below under the file name in its heading, in one folder, then run it as [the examples table](../README.md) says.
+
+## `package.json`
+
+```json
+{
+  "name": "terralab-typescript-quickstart",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1"
+  }
+}
+```
+
+## `quickstart.mjs`
+
+```javascript
 // List the TerraLab tools and run one with the official MCP TypeScript SDK.
 //   npm install
 //   TERRALAB_API_KEY=tlk_... node quickstart.mjs
@@ -21,3 +41,4 @@ const result = await client.callTool({
 });
 console.log(result.content[0].text);
 await client.close();
+```

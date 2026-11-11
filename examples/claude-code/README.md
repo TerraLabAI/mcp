@@ -1,3 +1,37 @@
+# Site brief agent, headless Claude Code
+
+Save each block below under the file name in its heading, in one folder, then run it as [the examples table](../README.md) says.
+
+## `mcp-key.json`
+
+```json
+{
+  "mcpServers": {
+    "terralab": {
+      "type": "http",
+      "url": "https://mcp.terra-lab.ai/mcp",
+      "headers": { "Authorization": "Bearer ${TERRALAB_API_KEY}" }
+    }
+  }
+}
+```
+
+## `mcp.json`
+
+```json
+{
+  "mcpServers": {
+    "terralab": {
+      "type": "http",
+      "url": "https://mcp.terra-lab.ai/mcp"
+    }
+  }
+}
+```
+
+## `site_brief.sh`
+
+```bash
 #!/usr/bin/env bash
 # A headless Claude Code agent that writes a site brief for any place with TerraLab.
 #   ./site_brief.sh "Porto-Vecchio, Corsica"
@@ -23,3 +57,4 @@ claude -p "$prompt" \
   --mcp-config "$config" \
   --strict-mcp-config \
   --allowedTools "mcp__terralab"
+```
