@@ -67,10 +67,10 @@ listed tool: `get_travel_area` for reach, `french_parcel` point by point, `get_s
 with `ndvi` for vegetation.
 
 Sizes the server enforces: one extract holds at most 20,000 features (about 1 km radius for a
-town centre; set `kind` for one kind of place); building heights up to 0.6 km²; satellite
+town centre; set `kind` for one kind of place); building heights up to 16 km² (2 km radius); satellite
 images up to 20 × 20 km (Sentinel-2) or 2 × 2 km (IGN). Ask for every format the user needs
 in one call: download links build their file when opened and are not inputs to `open_gis_file`
-(`process_geometry` accepts them). Give the client a timeout of at least 120 seconds.
+(`process_geometry` and `zonal_statistics` accept them). Give the client a timeout of at least 120 seconds.
 
 ## What a call counts
 

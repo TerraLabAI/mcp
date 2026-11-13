@@ -25,8 +25,8 @@ link rebuilds its file from the same call and counts no extra call.
 2. Formats: a GeoPackage always comes with `extract_open_data` and `extract_dataset`; add
    `shapefile`, `csv` or `geojson` in `formats` in the same call. Rasters (`get_elevation`
    areas, `get_satellite_image`, raster datasets) come as GeoTIFF.
-3. Never feed a download link to another TerraLab tool except `process_geometry`, which
-   takes a TerraLab link to clip, buffer or measure that layer.
+3. Never feed a download link to another TerraLab tool except `process_geometry` and
+   `zonal_statistics`, which take a TerraLab link to clip, buffer, measure or summarise that layer.
 
 ## Save the files
 

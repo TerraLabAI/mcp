@@ -1,7 +1,7 @@
 # TerraLab examples
 
 Every example talks to the production server `https://mcp.terra-lab.ai/mcp`. Set your
-TerraLab API key first (`export TERRALAB_API_KEY=tlk_...`, keys at [terra-lab.ai/dashboard/agent-access](https://terra-lab.ai/dashboard/agent-access)): every example sends it as
+TerraLab API key first (`export TERRALAB_API_KEY=tlk_...`, keys at [terra-lab.ai/dashboard/mcp](https://terra-lab.ai/dashboard/mcp)): every example sends it as
 `Authorization: Bearer` when the variable is set, and nothing otherwise.
 Each example is one Markdown page: save its code blocks under the file names it gives, in one folder, then run the command below from that folder.
 Python examples run with [uv](https://docs.astral.sh/uv/)

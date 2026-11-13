@@ -32,8 +32,9 @@ plugin: the tool returns the data itself.
    10 in a list, for example `"school"` or `["forest", "meadow", "grass"]`.
 5. Set `formats` to what the user will open (a GeoPackage always comes too): `shapefile` for tools
    that expect it, `kml` for Google Earth, `csv` for a spreadsheet. List them all in this
-   one call; never pass a download link to another tool, except `process_geometry`, which
-   takes a TerraLab download link to clip, buffer or measure that layer.
+   one call; never pass a download link to another tool, except `process_geometry` and
+   `zonal_statistics`, which take a TerraLab download link to clip, buffer, measure or
+   summarise that layer.
 6. Read the counts per kind from the result's `types`: they need no further call. A radius
    searches the square box around it (the answer gives its `area_km2`); clip to the exact
    circle with `process_geometry` `select_by_location` only when the user needs the exact radius.

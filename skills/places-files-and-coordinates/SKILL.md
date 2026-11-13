@@ -23,13 +23,13 @@ Each call counts 1 on the TerraLab account; a list of up to 100 addresses is one
 |---|---|
 | One address or place name, or a point to name | `find_places` with `query`, or `latitude` and `longitude` |
 | A list of addresses (up to 100), pasted or CSV with an address column | `find_places` with `addresses` or `text`, and a `title` |
-| A file, a link to a file, pasted GeoJSON, KML, GPX or WKT | `open_gis_file` with `file`, `url` or `text` (up to 50 MB) |
+| A file, a link to a file, pasted GeoJSON, KML, GPX or WKT | `open_gis_file` with `file`, `url` or `text` (up to 50 MB for a zipped Shapefile or KMZ, 20 MB for GeoJSON, 10 MB for KML or GPX) |
 | Points with coordinates already known, to map or export | `open_gis_file` with `points` |
 | Coordinates to convert (up to 1,000 lines) | `convert_coordinates` with `text`, one per line |
 
 Convert with the tool rather than by hand or from memory, so the result comes with a map
-and files. Never pass a TerraLab download link back to a tool: list every output format in
-one call.
+and files. Never pass a TerraLab download link to `open_gis_file`: list every output format
+in one call.
 
 ## Addresses
 
