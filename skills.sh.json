@@ -10,11 +10,13 @@
       ]
     },
     {
-      "title": "Map data and terrain",
-      "description": "Open map data and elevation for any place in the world, as GIS files.",
+      "title": "Map data, terrain and imagery",
+      "description": "Open map data, buildings, elevation and satellite images for any place in the world, as GIS files.",
       "skills": [
         "map-data-for-a-place",
-        "terrain-and-elevation"
+        "buildings-and-heights",
+        "terrain-and-elevation",
+        "satellite-images"
       ]
     },
     {
@@ -23,6 +25,14 @@
       "skills": [
         "site-study",
         "places-files-and-coordinates"
+      ]
+    },
+    {
+      "title": "Files and reuse",
+      "description": "Save results to disk for QGIS, Python, DuckDB or R, and check licences before publishing or selling.",
+      "skills": [
+        "files-for-qgis-and-python",
+        "licence-check"
       ]
     }
   ]

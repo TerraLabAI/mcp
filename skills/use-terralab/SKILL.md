@@ -41,30 +41,48 @@ when the user wants the coordinates or a map of the place.
 | Coordinates of an address or place, the address at a point, a list of up to 100 addresses on a map | `find_places` |
 | Map layers for an area: buildings, roads, addresses, admin boundaries, land use, POIs, waterways, water, power, railways, transit stops, protected areas | `extract_open_data` |
 | Altitude of points, a profile along a route, or DEM, hillshade, slope and contours for an area | `get_elevation` |
-| Driving, walking or cycling route through 2 to 25 places | `get_route` |
+| Driving, walking or cycling route through 2 to 25 places | `get_route` (when listed) |
 | Area reachable within a time or a road distance (isochrone) | `get_travel_area` |
-| Distances and travel times from up to 25 origins to up to 25 destinations (a matrix) | `get_travel_times` |
+| Distances and travel times from up to 25 origins to up to 25 destinations (a matrix) | `get_travel_times` (when listed) |
 | Straight-line distance, area and perimeter, a circle or buffer of a radius | `measure` |
 | Buffer, union, intersection, difference, clip, simplify, centroid or area of a layer | `process_geometry` |
 | Satellite image, false colour or NDVI (Sentinel-2 worldwide, IGN aerial photo in France) | `get_satellite_image` |
-| NDVI, NDWI, burn or built-up index figures for an area, or their change between two dates | `get_satellite_index` |
+| NDVI, NDWI, burn or built-up index figures for an area, or their change between two dates | `get_satellite_index` (when listed) |
 | Read, map or convert a GeoJSON, KML, KMZ, GPX, zipped Shapefile, CSV or WKT | `open_gis_file` |
 | Convert coordinates (DMS, UTM, MGRS, Lambert 93, any EPSG) and pick a local CRS | `convert_coordinates` |
 | French cadastral parcel and PLU zone at an address or point | `french_parcel` |
-| Every French cadastral parcel in an area (up to 1 km radius), with its PLU zone | `french_parcels_in_area` |
+| Every French cadastral parcel in an area (up to 1 km radius), with its PLU zone | `french_parcels_in_area` (when listed) |
 | Height, floors, use and year of each building around a French address | `french_building_heights` |
 | What data exists for a need or a country (land cover, official boundaries, hazards, population, soil, climate) | `find_datasets` |
 | A dataset from that catalogue cut to an area, as a GeoTIFF, GeoPackage or figures | `extract_dataset` |
 | Data TerraLab does not have, filed as a request after `find_datasets` found nothing | `request_data` (the only tool that records something; ask the user first) |
 | How many people live in a circle, an administrative area or a travel-time area | `estimate_population` |
 | Flood, clay, seismic and other natural risks at an address (France), river flood depth elsewhere | `get_natural_risks` |
-| Whether a forest is natural, planted, a plantation or tree crops (2020 baseline, for example EUDR) | `get_forest_type` |
+| Whether a forest is natural, planted, a plantation or tree crops (2020 baseline, for example EUDR) | `get_forest_type` (when listed) |
+| A raster summarised per polygon (population, land cover or elevation per district) | `zonal_statistics` (when listed) |
+
+Tools marked "when listed" are not offered to every client. Call one only when the connected
+tool list shows it; otherwise say this client does not offer it and answer with the closest
+listed tool: `get_travel_area` for reach, `french_parcel` point by point, `get_satellite_image`
+with `ndvi` for vegetation.
 
 Sizes the server enforces: one extract holds at most 20,000 features (about 1 km radius for a
 town centre; set `kind` for one kind of place); building heights up to 0.6 km²; satellite
 images up to 20 × 20 km (Sentinel-2) or 2 × 2 km (IGN). Ask for every format the user needs
 in one call: download links build their file when opened and are not inputs to `open_gis_file`
 (`process_geometry` accepts them). Give the client a timeout of at least 120 seconds.
+
+## What a call counts
+
+Every tool call counts on the user's TerraLab account. Plan the calls before making them:
+
+- One call counts 1, except: `extract_open_data` counts 1 per theme, a satellite image counts
+  10, and `count_only: true` counts none.
+- A call that fails on TerraLab's side, finds nothing or is cancelled is given back; one with
+  invalid arguments is not, so read the schema first.
+- Opening a download link counts no call.
+- Prefer one call with several themes or formats over several calls, and `count_only` before
+  a large extract. Ask the area and dates before a satellite image.
 
 ## Where TerraLab stops
 

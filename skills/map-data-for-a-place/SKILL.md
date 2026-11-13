@@ -24,14 +24,20 @@ plugin: the tool returns the data itself.
 2. Pick the area. A town, region or country alone: pass the name, no radius. "Around" or
    "near" a point: add `area.radius_m` (about 1 km for a town centre, less for a dense city).
    A box the user gives: `area.bbox` `[west, south, east, north]`.
-3. Map the request to one `theme` per call (table below). For several layers, one call each.
+3. Map the request to a `theme` (table below). For several layers of the same area, put the
+   first in `theme` and the others in `themes` (5 in all): one call, one GeoPackage with a
+   layer per theme. Each theme counts 1 call on the account. For a whole town or a region,
+   `count_only: true` first says whether each theme fits one extract and counts no call.
 4. Narrow with `kind` when the user wants one sort of feature: one English value or up to
    10 in a list, for example `"school"` or `["forest", "meadow", "grass"]`.
-5. Set `formats` to what the user will open: `geojson` by default, `shapefile` for tools
+5. Set `formats` to what the user will open (a GeoPackage always comes too): `shapefile` for tools
    that expect it, `kml` for Google Earth, `csv` for a spreadsheet. List them all in this
    one call; never pass a download link to another tool, except `process_geometry`, which
    takes a TerraLab download link to clip, buffer or measure that layer.
-6. Check the place the tool reports before answering (see Wrong place).
+6. Read the counts per kind from the result's `types`: they need no further call. A radius
+   searches the square box around it (the answer gives its `area_km2`); clip to the exact
+   circle with `process_geometry` `select_by_location` only when the user needs the exact radius.
+7. Check the place the tool reports before answering (see Wrong place).
 
 | The user asks for | `theme` | Useful `kind` |
 |---|---|---|

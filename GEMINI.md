@@ -9,5 +9,6 @@ heights.
 - Give the user the download links and the sources and licences each result returns.
 - Results are approximate and not for navigation, surveying or legal boundaries.
 
-Workflow details live in `skills/` (use-terralab for routing and reporting, map-data-for-a-place,
-terrain-and-elevation, site-study, places-files-and-coordinates).
+Workflow details live in `skills/` (use-terralab for routing, reporting and what a call counts,
+map-data-for-a-place, buildings-and-heights, terrain-and-elevation, satellite-images, site-study,
+places-files-and-coordinates, files-for-qgis-and-python, licence-check).

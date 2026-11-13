@@ -195,9 +195,17 @@ server above; installing a skill alone does not connect it.
 | --- | --- |
 | [`use-terralab`](skills/use-terralab/SKILL.md) | Any request about a real place or a GIS file: routes it to the right tool, resolves the place honestly, reports figures, files, sources and licences |
 | [`map-data-for-a-place`](skills/map-data-for-a-place/SKILL.md) | Boundaries, buildings, roads, transit, addresses, POIs, land use, water, power lines or protected areas as GIS files |
+| [`buildings-and-heights`](skills/buildings-and-heights/SKILL.md) | Footprints worldwide; heights, floors, use and year built in France |
 | [`terrain-and-elevation`](skills/terrain-and-elevation/SKILL.md) | Altitude, profiles along a route, contour lines and slope |
+| [`satellite-images`](skills/satellite-images/SKILL.md) | Sentinel-2 or IGN images, false colour, NDVI, before and after two dates |
 | [`site-study`](skills/site-study/SKILL.md) | A first look at a site before a project; in France, parcel and PLU zone |
 | [`places-files-and-coordinates`](skills/places-files-and-coordinates/SKILL.md) | Addresses and GIS files on a map, file conversion, coordinates and CRS choice |
+| [`files-for-qgis-and-python`](skills/files-for-qgis-and-python/SKILL.md) | Results saved to disk, loaded in QGIS, geopandas, DuckDB or R, converted to GeoParquet |
+| [`licence-check`](skills/licence-check/SKILL.md) | Whether a layer, map or image may be published, shared or sold, and the credit line to print |
+
+Each skill says what its calls count on your TerraLab account, so the agent plans them: one call
+counts 1, an `extract_open_data` call 1 per theme, a satellite image 10, and `count_only` none.
+Each skill is checked in real Claude Code runs before release, one realistic request per skill.
 
 Install them:
 
@@ -206,7 +214,7 @@ Install them:
 /plugin install terralab@terralab-ai-apps
 ```
 
-In Claude Code, the plugin adds the server and the five skills. For other agents (Cursor,
+In Claude Code, the plugin adds the server and the nine skills. For other agents (Cursor,
 Codex, Windsurf, OpenCode, Gemini CLI and others), use the [skills CLI](https://skills.sh/terralabai/mcp):
 
 ```bash
@@ -216,6 +224,19 @@ npx skills add TerraLabAI/mcp
 Or copy one `SKILL.md` into your agent's skills folder, for example
 `~/.claude/skills/use-terralab/SKILL.md`. The Gemini CLI extension carries the skills'
 routing in [`GEMINI.md`](GEMINI.md).
+
+### First exercise: one place, three layers, one map
+
+For a course or a first try with Claude Code or Codex: about 10 minutes and 14 calls on your
+TerraLab account (the image counts 10). Make an empty folder, start the agent in it, then send
+these one at a time, with a town you know:
+
+1. `Get the buildings, roads and water areas within 1 km of the centre of Annecy, France, as one GeoPackage, and save it in ./data.`
+2. `Make contour lines every 10 m for the same area and save them in ./data too.`
+3. `Get the latest NDVI image of the same area and tell me the scene date and cloud cover.`
+4. `Write a short Python script that loads every file in ./data and prints what each holds, then tell me what credit line a published map of these layers needs.`
+
+Then drag the files of `./data` into QGIS. `data/SOURCES.md` keeps the source and licence of each.
 
 ## Use it from code
 
@@ -401,12 +422,13 @@ TerraLab needs a TerraLab account.
 
 - **In an agent**: the first call opens the TerraLab sign-in in your browser (OAuth). Approve
   the access once; your agent keeps the connection.
-- **From code**: create an API key in your TerraLab dashboard
-  ([terra-lab.ai/dashboard/agent-access](https://terra-lab.ai/dashboard/agent-access)) and send
+- **From code**: create an API key on your TerraLab account page
+  ([terra-lab.ai/dashboard/mcp](https://terra-lab.ai/dashboard/mcp), under Advanced) and send
   it as `Authorization: Bearer <key>`. Keep it in an environment variable, never in a commit.
 
-Each account has a daily number of data calls; a call past it returns a `daily_limit` error
-that resets at 00:00 UTC.
+Each account has a number of calls included every month. Past it, a call returns
+`balance_required` with a link to the account page; `rate_limited` means too many calls in one
+minute. A call that fails on TerraLab's side or finds nothing does not count.
 
 ## Links
 

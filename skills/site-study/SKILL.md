@@ -14,6 +14,10 @@ to `https://mcp.terra-lab.ai/mcp`; installing the skill alone does not connect t
 If its tools are unavailable, provide the setup link and stop before claiming results.
 Use the connected tools' current input schemas; tool prefixes vary between clients.
 
+A site study makes several calls, each counting 1 on the TerraLab account (an
+`extract_open_data` call 1 per theme): put the layers around the site in one call with
+`themes`, and say how many calls the study will make before starting a long one.
+
 ## Steps
 
 1. Get the site: a street address with its town and country, a place name, or latitude

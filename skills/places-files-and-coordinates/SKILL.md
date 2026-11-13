@@ -14,6 +14,9 @@ to `https://mcp.terra-lab.ai/mcp`; installing the skill alone does not connect t
 If its tools are unavailable, provide the setup link and stop before claiming results.
 Use the connected tools' current input schemas; tool prefixes vary between clients.
 
+Each call counts 1 on the TerraLab account; a list of up to 100 addresses is one
+`find_places` call.
+
 ## Pick the tool
 
 | The user has | Tool |
