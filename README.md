@@ -21,7 +21,7 @@ by TerraLab, whose QGIS plugins show every day what GIS users ask for.
 | Server URL | `https://mcp.terra-lab.ai/mcp` |
 | Transport | Streamable HTTP, hosted by TerraLab |
 | Authentication | A TerraLab account: OAuth sign-in from your agent, or an API key for scripts; see [Account](#account) |
-| Tools | 21; 20 read-only, and `request_data`, which files a data request |
+| Tools | 24; 23 read-only, and `request_data`, which files a data request. ChatGPT also lists 16 one-step tools that split `measure` and `process_geometry` |
 | Coverage | Worldwide; France in more depth (cadastre, PLU, IGN aerial photos and building heights) |
 
 Made by [TerraLab](https://terra-lab.ai), which builds AI plugins for QGIS.
@@ -59,8 +59,11 @@ connector and add it again: Claude then offers the TerraLab sign-in.
 
 ## What you can ask
 
-Twenty-one tools, named by what they do. Your agent picks the tool; most tools find the place
-themselves, so a name or an address is enough.
+Twenty-four tools, named by what they do. Your agent picks the tool; most tools find the place
+themselves, so a name or an address is enough. In Claude and in clients the server cannot
+identify, six of them are left out of the tool list (`get_route`, `get_travel_times`,
+`get_satellite_index`, `french_parcels_in_area`, `zonal_statistics`, `get_forest_type`) but
+still answer when called by name.
 
 | Do | Tool | Ask your agent |
 | --- | --- | --- |
@@ -81,6 +84,9 @@ themselves, so a name or an address is enough.
 | **Measure** French building heights | `french_building_heights` | "How tall are the buildings within 150 m of Place Bellecour, Lyon?" |
 | **Find** a dataset | `find_datasets` | "What land cover data do you have for Kenya?" |
 | **Extract** a hosted dataset | `extract_dataset` | "ESA WorldCover for 5 km around Nakuru as a GeoTIFF" |
+| **Inspect** a cloud GeoParquet | `inspect_dataset` | "What columns does the Fields of The World file have?" |
+| **Aggregate** a cloud GeoParquet | `aggregate_dataset` | "How many crop fields are in Arkansas?" |
+| **Summarise** a raster per zone | `zonal_statistics` | "Population of each commune of this district, as a CSV" |
 | **Ask** for missing data | `request_data` | "You don't have the official flood zones of Morocco? Ask TerraLab to add them." |
 | **Count** people in an area | `estimate_population` | "How many people live within 15 minutes' walk of Nairobi Central station?" |
 | **Check** natural risks | `get_natural_risks` | "Is 12 quai Saint-Antoine, Lyon in a flood zone?" |
