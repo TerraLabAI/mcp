@@ -20,7 +20,7 @@ by TerraLab, whose QGIS plugins show every day what GIS users ask for.
 | --- | --- |
 | Server URL | `https://mcp.terra-lab.ai/mcp` |
 | Transport | Streamable HTTP, hosted by TerraLab |
-| Authentication | A TerraLab account: OAuth sign-in from your agent, or an API key for scripts; see [Account](#account) |
+| Authentication | A TerraLab account, with OAuth sign-in from your agent; see [Account](#account) |
 | Tools | 24; 23 read-only, and `request_data`, which files a data request. ChatGPT also lists 16 one-step tools that split `measure` and `process_geometry` |
 | Coverage | Worldwide; France in more depth (cadastre, PLU, IGN aerial photos and building heights) |
 
@@ -189,9 +189,6 @@ EPSG:32630 (UTM 30N), licence and date in the file. Source: Copernicus Sentinel-
 Check: cloud, shadow and snow pixels are NaN, not zero. Inside metropolitan France, true colour
 without a date defaults to the IGN aerial photo (0.5 to 1 m) instead of Sentinel-2.
 
-More chained workflows are in [`examples/`](examples/), such as a site pack that writes a
-folder of GIS files for any place.
-
 ## Skills
 
 Skills tell your agent which tool fits a request and how to report the result. They need the
@@ -246,9 +243,9 @@ Then drag the files of `./data` into QGIS. `data/SOURCES.md` keeps the source an
 
 ## Use it from code
 
-The server speaks MCP over Streamable HTTP, so any MCP client library works. From code,
-send `Authorization: Bearer <TerraLab API key>` with each request (see [Account](#account)).
-The runnable versions, with the date each one was last run, are in [`examples/`](examples/).
+The server speaks MCP over Streamable HTTP, so any MCP client library works. A client that
+cannot run the OAuth sign-in is set up as described in
+[terra-lab.ai/docs/authentication](https://terra-lab.ai/docs/authentication).
 
 **Python, official MCP SDK** (`pip install "mcp>=2.3"`)
 
@@ -428,9 +425,8 @@ TerraLab needs a TerraLab account.
 
 - **In an agent**: the first call opens the TerraLab sign-in in your browser (OAuth). Approve
   the access once; your agent keeps the connection.
-- **From code**: create an API key on your TerraLab account page
-  ([terra-lab.ai/dashboard/mcp](https://terra-lab.ai/dashboard/mcp), under Advanced) and send
-  it as `Authorization: Bearer <key>`. Keep it in an environment variable, never in a commit.
+- **From code**: see [terra-lab.ai/docs/authentication](https://terra-lab.ai/docs/authentication).
+  This plugin and its skills read no key, token or other credential from your machine.
 
 Each account has a number of calls included every month. Past it, a call returns
 `balance_required` with a link to the account page; `rate_limited` means too many calls in one
@@ -443,8 +439,7 @@ minute. A call that fails on TerraLab's side or finds nothing does not count.
 - Privacy policy: https://terra-lab.ai/privacy-policy#ai-assistants
 - Support: https://terra-lab.ai/support or yvann.barbot@terra-lab.ai
 
-This repository holds the plugin packages (Claude, Cursor, Gemini CLI), the skills and the
-examples. The server itself is hosted by TerraLab and is not in this repository. The Claude
+This repository holds the plugin packages (Claude, Cursor, Gemini CLI) and the skills. The server itself is hosted by TerraLab and is not in this repository. The Claude
 marketplace ID stays `terralab-ai-apps` so existing install commands keep working.
 
 TerraLab also makes AI plugins for QGIS: AI Segmentation, AI Edit and AI Agent.

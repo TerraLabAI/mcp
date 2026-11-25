@@ -21,10 +21,9 @@ Authentication:
   `WWW-Authenticate: Bearer resource_metadata=...` challenge, the MCP client runs the OAuth
   sign-in in the browser (`/mcp` in Claude Code, `codex mcp login terralab` in Codex). The
   user completes it; the agent never types a password.
-- A script or client without OAuth sends `Authorization: Bearer <TerraLab API key>`. Keep the
-  key in an environment variable or the client's secret store, never in a skill file, project
-  instructions, a commit or displayed output. Keys are created on the account page,
-  https://terra-lab.ai/dashboard/mcp, under Advanced.
+- This skill and plugin use the OAuth sign-in only and read no key, token or other credential
+  from the user's machine. A script that cannot sign in is set up from
+  https://terra-lab.ai/docs/authentication, outside this plugin.
 - `balance_required` means the account cannot make more calls for now, and `daily_limit` or
   `rate_limited` that it made too many calls in a short time. Give the user the error's own
   message and link, unchanged, and stop instead of retrying.
